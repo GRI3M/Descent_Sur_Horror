@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using Weapons;
 
 namespace Player
 {
@@ -74,14 +75,31 @@ namespace Player
             int[] satchelSlots = {24,25,26};
             int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(Inventory[Slot] == (int)survivorItems.Blocked) return 0;
+            if(Inventory[Slot] == (int)survivorItems.Blocked) return InventoryCheckDisplay.Empty;
 
-            else if(Inventory[Slot]==(int)survivorItems.Empty && !satchelSlots.Contains((int)Inventory[Slot]) && !bigWeapon.Contains(Item)) return 1;
+            else if(Inventory[Slot]==(int)survivorItems.Empty && !satchelSlots.Contains((int)Inventory[Slot]) && !bigWeapon.Contains(Item)) return InventoryCheckDisplay.Empty;
 
-            else if(satchelSlots.Contains((int)Inventory[Slot]) && Inventory[Slot] == (int)survivorItems.Empty ) return 1;
+            else if(satchelSlots.Contains((int)Inventory[Slot]) && Inventory[Slot] == (int)survivorItems.Empty ) return InventoryCheckDisplay.Empty;
 
 
-            else return -1;
+            else return InventoryCheckDisplay.SlotCheckError;
+        }
+
+        private bool CheckSlot2(int Slot1)//Could drag in slot 2 as well, might be more efficient but we'll see
+        {
+            int Slot2 = 0;
+            if(CheckAvailability(Slot1, Inventory[Slot1]) == (int)InventoryCheckDisplay.Empty) return true;
+                //This needs to converse with the ui to see if the 2 part item is faced to the right or down.
+                if(IventoryItem.PointedRight()) 
+                    Slot2 = Slot1 + 1;
+                    if(CheckAvailability(Slot2, Inventory[Slot2]) == (int)InventoryCheckDisplay.Empty) return true;
+                else 
+                    Slot2 = Slot1 + 4;
+                    if(CheckAvailability(Slot2, Inventory[Slot2]) == (int)InventoryCheckDisplay.Empty) return true;
+
+
+                
+            else return false;
         }
 
 

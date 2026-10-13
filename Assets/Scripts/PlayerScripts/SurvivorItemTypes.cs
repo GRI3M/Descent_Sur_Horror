@@ -24,4 +24,11 @@ namespace Player
         Upgrade2
     }
     
+    public enum IventoryCheckDisplay
+    {
+        Empty,
+        Filled,
+        Changeable,
+        SlotCheckError = -1,
+    }
 }
