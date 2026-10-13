@@ -1,10 +1,13 @@
 using UnityEngine;
 using ItemScripts;
 
-public class Sniper : Guns
+namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
 {
-    public int weaponType = (int)GunTypes.Sniper;
-    public bool rechamber;
-    
-    
+    public class Sniper : Guns
+    {
+        public int weaponType = (int)GunTypes.Sniper;
+        public bool rechamber;
+        
+        
+    }
 }

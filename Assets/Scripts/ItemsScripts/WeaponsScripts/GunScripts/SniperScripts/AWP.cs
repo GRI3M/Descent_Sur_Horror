@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ItemScripts
+namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
 {
     public class AWP : Sniper
     {
