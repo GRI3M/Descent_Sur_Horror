@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using Weapons;
+using ItemScripts;
 
 namespace Player
 {
@@ -11,7 +11,38 @@ namespace Player
         // The Max Inventory Size for the player. 24 slots are for the main inventory, and 3 slots are for weapons
         // that can go into the weapon satchel. The weapon satchel is a special inventory that can only hold weapons, and is not affected by the bag size.
         // Inventroy initializes as blocked and will refill to be empty on startup.
-        private int[] Inventory = new int [27];
+        private Items[] Inventory = new Items [27];
+
+        private bool PistolObtained;
+        public int PistolAmmo;
+        private bool ShotgunObtained;
+        public int ShotgunAmmo;
+        private bool SubmachineGunObtained;
+        public int SubmachineGunAmmo;
+        private bool RifleObtained;
+        public int RifleAmmo;
+        private bool SniperObtained;
+        public int SniperAmmo;
+        private bool MagnumObtained;
+        public int MagnumAmmo;
+        private bool GrenadeLauncherObtained;
+        public int GrenadeLauncherAmmo;
+
+        public enum bagTypes  
+        { 
+            None,
+            Bag,
+            Upgrade1,
+            Upgrade2
+        }
+        
+        public enum InventoryCheckDisplay
+        {
+            Empty,
+            Filled,
+            Changeable,
+            SlotCheckError = -1,
+        }
 
             // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -36,9 +67,9 @@ namespace Player
         {
             for(int i = 24; i < 27; i++)
             {
-                if(Inventory[i] == (int)survivorItems.Blocked)
+                if(Inventory[i].itemType == (int)Items.ItemTypes.Blocked)
                 {
-                    Inventory[i] = (int)survivorItems.Empty;
+                    Inventory[i].itemType = (int)Items.ItemTypes.Empty;
                 }
             }
         }
@@ -55,9 +86,9 @@ namespace Player
             else if(bag==(int)bagTypes.Upgrade1) end = 19;
             else if(bag==(int)bagTypes.Upgrade2) end = 23;
             for(int i=0;i<end;i++){
-                if(Inventory[i] == (int)survivorItems.Blocked)
+                if((int)Inventory[i].itemType == (int)Items.ItemTypes.Blocked)
                 {
-                    Inventory[i] = (int)survivorItems.Empty;
+                    Inventory[i].itemType = (int)Items.ItemTypes.Empty;
                 }
             }
         }
@@ -72,35 +103,35 @@ namespace Player
         /// <returns></returns>
         private int CheckAvailability(int Slot, int Item) 
         {
-            int[] satchelSlots = {24,25,26};
-            int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
+             int[] satchelSlots = {24,25,26};
+            //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(Inventory[Slot] == (int)survivorItems.Blocked) return InventoryCheckDisplay.Empty;
+            if(Inventory[Slot].itemType == (int)Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
 
-            else if(Inventory[Slot]==(int)survivorItems.Empty && !satchelSlots.Contains((int)Inventory[Slot]) && !bigWeapon.Contains(Item)) return InventoryCheckDisplay.Empty;
+            //else if(Inventory[Slot].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
 
-            else if(satchelSlots.Contains((int)Inventory[Slot]) && Inventory[Slot] == (int)survivorItems.Empty ) return InventoryCheckDisplay.Empty;
+            else if(satchelSlots.Contains((int)Inventory[Slot].itemType) && Inventory[Slot].itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
 
 
-            else return InventoryCheckDisplay.SlotCheckError;
+            else return (int)InventoryCheckDisplay.SlotCheckError;
         }
 
-        private bool CheckSlot2(int Slot1)//Could drag in slot 2 as well, might be more efficient but we'll see
+        /*private bool CheckSlot2(int Slot1)//Could drag in slot 2 as well, might be more efficient but we'll see
         {
             int Slot2 = 0;
-            if(CheckAvailability(Slot1, Inventory[Slot1]) == (int)InventoryCheckDisplay.Empty) return true;
+            if(CheckAvailability(Slot1, (int)Inventory[Slot1].itemType) == (int)InventoryCheckDisplay.Empty) return true;
                 //This needs to converse with the ui to see if the 2 part item is faced to the right or down.
-                if(IventoryItem.PointedRight()) 
+                if(InventoryItem.PointedRight()) 
                     Slot2 = Slot1 + 1;
-                    if(CheckAvailability(Slot2, Inventory[Slot2]) == (int)InventoryCheckDisplay.Empty) return true;
+                    if(CheckAvailability(Slot2, (int)Inventory[Slot2].itemType) == (int)InventoryCheckDisplay.Empty) return true;
                 else 
                     Slot2 = Slot1 + 4;
-                    if(CheckAvailability(Slot2, Inventory[Slot2]) == (int)InventoryCheckDisplay.Empty) return true;
+                    if(CheckAvailability(Slot2, (int)Inventory[Slot2].itemType) == (int)InventoryCheckDisplay.Empty) return true;
 
 
                 
             else return false;
-        }
+        }*/
 
 
 
