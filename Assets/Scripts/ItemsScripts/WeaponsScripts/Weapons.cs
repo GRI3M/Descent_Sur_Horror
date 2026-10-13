@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace ItemScripts
+namespace ItemScripts.WeaponScripts
 {
     public class Weapons : Items
     {
