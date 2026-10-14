@@ -2,26 +2,33 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
 using Player;
+using Unity.VisualScripting;
 
-public class Enemy : MonoBehaviour
+namespace Enemy
 {
-    FirstPersonController player;
-    private NavMeshAgent agent;
-
-    void Awake()
+    public class Enemy : MonoBehaviour
     {
-        agent = GetComponent<NavMeshAgent>();
-    }
+        FirstPersonController player;
+        private NavMeshAgent agent;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        player = FindAnyObjectByType<FirstPersonController>();
-    }
+        void Awake()
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        agent.SetDestination(player.transform.position);
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            player = FindAnyObjectByType<FirstPersonController>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            agent.SetDestination(player.transform.position);
+        }
+
+        
     }
+    
 }

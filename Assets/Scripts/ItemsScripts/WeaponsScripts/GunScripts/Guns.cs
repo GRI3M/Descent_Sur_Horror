@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using Enemy;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
@@ -10,8 +11,8 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public float reloadSpeed;
         [SerializeField] public float fireRate;
         [SerializeField] public bool automatic = false;
-        [SerializeField] public int WeaponType;
-
+        [SerializeField] public int gunType;
+        
         StarterAssetsInputs starterAssetsInputs;
 
 
@@ -34,21 +35,23 @@ namespace ItemScripts.WeaponScripts.GunScripts
 
         void Update()
         {
-            shootGun();
+            Damage();
         }
 
-        public void shootGun()
+        void Damage()
         {
-            if(starterAssetsInputs.shoot)
-            {
-                RaycastHit hit;
+            if(!starterAssetsInputs.shoot) return;
+            
+            RaycastHit hit;
 
-                if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
-                {
-                    Debug.Log(hit.collider.name);
-                    starterAssetsInputs.shoot = false;
-                }
+            if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+            {
+                EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
+                enemyHealth?.TakeDamage(weaponDamage);
+                
+                starterAssetsInputs.shoot = false;
             }
+            
         }
 
     }
