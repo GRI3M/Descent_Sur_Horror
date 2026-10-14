@@ -12,6 +12,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public float fireRate;
         [SerializeField] public bool automatic = false;
         [SerializeField] public int gunType;
+        public ParticleSystem muzzleFlash;
         
         StarterAssetsInputs starterAssetsInputs;
 
@@ -40,7 +41,11 @@ namespace ItemScripts.WeaponScripts.GunScripts
 
         void Damage()
         {
+            
+
             if(!starterAssetsInputs.shoot) return;
+
+            muzzleFlash.Play();
             
             RaycastHit hit;
 
@@ -48,10 +53,9 @@ namespace ItemScripts.WeaponScripts.GunScripts
             {
                 EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
                 enemyHealth?.TakeDamage(weaponDamage);
-                
-                starterAssetsInputs.shoot = false;
             }
             
+            starterAssetsInputs.shoot = false;
         }
 
     }
