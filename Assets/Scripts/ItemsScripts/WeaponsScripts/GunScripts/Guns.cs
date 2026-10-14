@@ -1,6 +1,7 @@
 using UnityEngine;
 using StarterAssets;
 using Enemy;
+using Unity.Mathematics;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
@@ -12,9 +13,11 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public float fireRate;
         [SerializeField] public bool automatic = false;
         [SerializeField] public int gunType;
-        public ParticleSystem muzzleFlash;
-        
+        [SerializeField] public ParticleSystem muzzleFlash;
+        [SerializeField] public Animator gunAnimator;
+        [SerializeField] public GameObject hitVFX;
         StarterAssetsInputs starterAssetsInputs;
+        const string SHOOT_STR = "ShootWeapon"; 
 
 
         public enum GunTypes
@@ -46,11 +49,15 @@ namespace ItemScripts.WeaponScripts.GunScripts
             if(!starterAssetsInputs.shoot) return;
 
             muzzleFlash.Play();
+            gunAnimator.Play(SHOOT_STR, 0, 0f);
             
             RaycastHit hit;
 
             if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
             {
+                Instantiate(hitVFX, hit.point, quaternion.identity);
+                
+
                 EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
                 enemyHealth?.TakeDamage(weaponDamage);
             }
