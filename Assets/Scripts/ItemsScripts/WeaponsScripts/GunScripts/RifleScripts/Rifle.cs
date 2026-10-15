@@ -4,16 +4,19 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
 {
     public class Rifle : Guns
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public enum RifleTypes
         {
-            
+            M1Grande,
+            MK14,
+            M4,
+            AK47,
         }
 
-        // Update is called once per frame
-        void Update()
+        public int RifleType;
+
+        public Rifle()
         {
-            
+            gunType = (int) GunTypes.Rifle;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ItemScripts
     {
         public int itemType;
 
-        public enum ItemTypes
+        public enum itemTypes
         {
             Blocked,
             Empty,

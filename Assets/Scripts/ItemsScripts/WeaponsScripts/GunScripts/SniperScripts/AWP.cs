@@ -10,6 +10,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
             reloadSpeed = 3.5f;
             fireRate = 1.57f;
             rechamber = true;
+            SniperType = (int) SniperTypes.AWP;
         }
     }
 }

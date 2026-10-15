@@ -5,8 +5,22 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
 {
     public class Sniper : Guns
     {
-        public int weaponType = (int)GunTypes.Sniper;
+        public enum SniperTypes
+        {
+            Lightweight,
+            FastTrigger,
+            Barret50Calibur,
+            AWP,
+        }
+
+        public int SniperType;
         public bool rechamber;
+        public Sniper()
+        {
+            weaponType = (int)GunTypes.Sniper;
+            
+        }
+        
         
         
     }

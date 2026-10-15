@@ -7,15 +7,19 @@ namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class Guns : Weapons
     {
-        
+        [Header("Gun Attributes")]
         [SerializeField] public int capacity;
         [SerializeField] public float reloadSpeed;
         [SerializeField] public float fireRate;
         [SerializeField] public bool automatic = false;
         [SerializeField] public int gunType;
+
+        [Header("Plugins")]
         [SerializeField] public ParticleSystem muzzleFlash;
         [SerializeField] public Animator gunAnimator;
         [SerializeField] public GameObject hitVFX;
+
+
         StarterAssetsInputs starterAssetsInputs;
         const string SHOOT_STR = "ShootWeapon"; 
 
@@ -27,7 +31,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
             Rifle,
             Sniper,
             SMG,
-            Magnum,
+            Handcannon,
             GrenadeLauncher,
         }
 
@@ -63,6 +67,11 @@ namespace ItemScripts.WeaponScripts.GunScripts
             }
             
             starterAssetsInputs.shoot = false;
+        }
+
+        public Guns()
+        {
+            weaponType = (int) WeaponTypes.Gun;
         }
 
     }
