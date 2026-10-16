@@ -12,7 +12,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
             AK47,
         }
 
-        public int RifleType;
+        public int rifleType;
 
         public Rifle()
         {

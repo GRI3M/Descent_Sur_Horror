@@ -11,7 +11,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.HandcannonScript
             OldWestern,
         }
 
-        public int HandcannonType;
+        public int handcannonType;
 
         Handcannon()
         {

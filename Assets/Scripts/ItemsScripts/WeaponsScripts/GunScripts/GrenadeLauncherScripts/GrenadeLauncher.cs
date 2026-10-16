@@ -10,7 +10,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
             RevolvingBarrels,
         }
 
-        public int GrenadeLauncherType;
+        public int grenadeLauncherType;
 
         public GrenadeLauncher()
         {

@@ -13,7 +13,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
             AWP,
         }
 
-        public int SniperType;
+        public int sniperType;
         public bool rechamber;
         public Sniper()
         {

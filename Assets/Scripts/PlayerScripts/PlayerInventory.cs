@@ -11,24 +11,25 @@ namespace Player
         // The Max Inventory Size for the player. 24 slots are for the main inventory, and 3 slots are for weapons
         // that can go into the weapon satchel. The weapon satchel is a special inventory that can only hold weapons, and is not affected by the bag size.
         // Inventroy initializes as blocked and will refill to be empty on startup.
-        private Items[] Inventory = new Items [27];
+        // this might be public depending on the equip
+        private Items[] inventory = new Items [27];
 
-        private bool PistolObtained;
-        public int PistolAmmo;
-        private bool ShotgunObtained;
-        public int ShotgunAmmo;
-        private bool SubmachineGunObtained;
-        public int SubmachineGunAmmo;
-        private bool RifleObtained;
-        public int RifleAmmo;
-        private bool SniperObtained;
-        public int SniperAmmo;
-        private bool MagnumObtained;
-        public int MagnumAmmo;
-        private bool GrenadeLauncherObtained;
-        public int GrenadeLauncherAmmo;
+        private bool pistolObtained;
+        public int pistolAmmo;
+        private bool shotgunObtained;
+        public int shotgunAmmo;
+        private bool submachineGunObtained;
+        public int submachineGunAmmo;
+        private bool rifleObtained;
+        public int rifleAmmo;
+        private bool sniperObtained;
+        public int sniperAmmo;
+        private bool magnumObtained;
+        public int magnumAmmo;
+        private bool grenadeLauncherObtained;
+        public int grenadeLauncherAmmo;
 
-        public enum bagTypes  
+        public enum BagTypes  
         { 
             None,
             Bag,
@@ -47,7 +48,7 @@ namespace Player
             // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-                BagResize((int)bagTypes.None);
+                BagResize((int)BagTypes.None);
 
 
         }
@@ -67,9 +68,9 @@ namespace Player
         {
             for(int i = 24; i < 27; i++)
             {
-                if(Inventory[i].itemType == (int)Items.ItemTypes.Blocked)
+                if(inventory[i].itemType == (int)Items.ItemTypes.Blocked)
                 {
-                    Inventory[i].itemType = (int)Items.ItemTypes.Empty;
+                    inventory[i].itemType = (int)Items.ItemTypes.Empty;
                 }
             }
         }
@@ -81,14 +82,14 @@ namespace Player
         private void BagResize(int bag)
         {
             int end = 11;
-            if(bag==(int)bagTypes.None) end = 11;
-            else if(bag==(int)bagTypes.Bag) end =15;
-            else if(bag==(int)bagTypes.Upgrade1) end = 19;
-            else if(bag==(int)bagTypes.Upgrade2) end = 23;
+            if(bag==(int)BagTypes.None) end = 11;
+            else if(bag==(int)BagTypes.Bag) end =15;
+            else if(bag==(int)BagTypes.Upgrade1) end = 19;
+            else if(bag==(int)BagTypes.Upgrade2) end = 23;
             for(int i=0;i<end;i++){
-                if((int)Inventory[i].itemType == (int)Items.ItemTypes.Blocked)
+                if((int)inventory[i].itemType == (int)Items.ItemTypes.Blocked)
                 {
-                    Inventory[i].itemType = (int)Items.ItemTypes.Empty;
+                    inventory[i].itemType = (int)Items.ItemTypes.Empty;
                 }
             }
         }
@@ -106,11 +107,11 @@ namespace Player
              int[] satchelSlots = {24,25,26};
             //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(Inventory[Slot].itemType == (int)Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
+            if(inventory[Slot].itemType == (int)Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
 
             //else if(Inventory[Slot].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
 
-            else if(satchelSlots.Contains((int)Inventory[Slot].itemType) && Inventory[Slot].itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
+            else if(satchelSlots.Contains((int)inventory[Slot].itemType) && inventory[Slot].itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
 
 
             else return (int)InventoryCheckDisplay.SlotCheckError;

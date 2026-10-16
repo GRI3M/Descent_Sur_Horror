@@ -16,7 +16,7 @@ namespace ItemScripts.WeaponScripts
 
         public Weapons()
         {
-            itemType = (int) itemTypes.Weapon;
+            itemType = (int) ItemTypes.Weapon;
         }
     }
 }
