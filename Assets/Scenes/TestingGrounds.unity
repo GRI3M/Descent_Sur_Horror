@@ -2194,7 +2194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6959893029961775784, guid: 8de6b63f12e936943870b60a25a40414, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6959893029961775784, guid: 8de6b63f12e936943870b60a25a40414, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2231,10 +2231,6 @@ PrefabInstance:
     - target: {fileID: 7879271659641759777, guid: 8de6b63f12e936943870b60a25a40414, type: 3}
       propertyPath: m_Name
       value: Criminal (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666657902612509401, guid: 8de6b63f12e936943870b60a25a40414, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2396,20 +2392,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466567218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2655f099555ebaf458aaba0ec42901d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60136d4ba454dcd46851530b231b2293, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.PistolScripts.Pistol
-  itemType: 0
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.PistolScripts.Glock19.Glock19
+  itemName: Glock-19
+  itemType: 3
+  equipable: 1
+  movementSpeedModifier: 1.1
   weaponType: 0
-  weaponDamage: 34
+  weaponDamage: 22
+  critModifier: 2
   capacity: 0
   reloadSpeed: 0
   fireRate: 0
   automatic: 0
   gunType: 0
+  accuracy: 0
+  accuracyUnscoped: 0
   muzzleFlash: {fileID: 1075135830502007806}
   gunAnimator: {fileID: 1160942044}
   hitVFX: {fileID: 3935437322874517827, guid: 8557d9197127b3c41af3c90027ffe27d, type: 3}
+  pistolType: 0
 --- !u!1 &1542401887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6959893029961775784, guid: 8de6b63f12e936943870b60a25a40414, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.327
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6959893029961775784, guid: 8de6b63f12e936943870b60a25a40414, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2973,10 +2976,10 @@ SceneRoots:
   - {fileID: 1068024376}
   - {fileID: 796157808}
   - {fileID: 1994919468}
-  - {fileID: 5964860387522974421}
   - {fileID: 870195425}
   - {fileID: 428956672}
   - {fileID: 1372353537}
   - {fileID: 1987307954}
   - {fileID: 11181742}
   - {fileID: 683231425}
+  - {fileID: 5964860387522974421}

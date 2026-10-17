@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -8,6 +10,9 @@ namespace ItemScripts.WeaponScripts
         [Header("Weapon Attributes")]
         [SerializeField] public int weaponType;
         [SerializeField] public float weaponDamage;
+        [SerializeField] public float critModifier;
+        
+
         public enum WeaponTypes
         {
             Gun,
@@ -17,6 +22,7 @@ namespace ItemScripts.WeaponScripts
         public Weapons()
         {
             itemType = (int) ItemTypes.Weapon;
+            equipable = true;
         }
     }
 }

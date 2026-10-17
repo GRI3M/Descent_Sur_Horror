@@ -1,10 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ItemScripts
 {
     public class Items : MonoBehaviour
     {
-        public int itemType;
+        [Header("Item Attributes")]
+        [SerializeField] public string itemName;
+        [SerializeField] public int itemType;
+        [SerializeField] public bool equipable;
+        [SerializeField] public float movementSpeedModifier;
 
         public enum ItemTypes
         {

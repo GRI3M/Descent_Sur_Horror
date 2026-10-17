@@ -11,7 +11,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SMGScripts
             UMP,
             MP5,
         }
-
+        [Header("SMG Attributes")]
         public int SMGType;
 
         public SMG()

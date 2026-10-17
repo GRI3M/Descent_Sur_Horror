@@ -13,6 +13,8 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public float fireRate;
         [SerializeField] public bool automatic = false;
         [SerializeField] public int gunType;
+        [SerializeField] public float accuracy;
+        [SerializeField] public float accuracyUnscoped;
 
         [Header("Plugins")]
         [SerializeField] public ParticleSystem muzzleFlash;

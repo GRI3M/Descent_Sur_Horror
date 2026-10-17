@@ -8,7 +8,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
     public class Pistol : Guns
     {
 
-        public enum pistolTypes
+        public enum PistolTypes
         {
             Glock19,
             USP,
@@ -17,11 +17,11 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
             M1911,
             Tech9,
         }
+        [Header("Pistol Attributes")]
         public int pistolType;
 
         public Pistol()
         {
-            weaponDamage = 34f;
             gunType = (int)Guns.GunTypes.Pistol;
         }
 
