@@ -1,17 +1,16 @@
 using UnityEngine;
 using ItemScripts.AmmoManagement;
+using JetBrains.Annotations;
+
 
 public class AmmoDrop : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] public GameObject ammoBlock;
+    public int ammoCount;
+    public int ammoType;
 
-    // Update is called once per frame
-    void Update()
+    public void CreateAmmoDrop()
     {
-        
+        float r = Random.Range(0f, 1);
     }
 }

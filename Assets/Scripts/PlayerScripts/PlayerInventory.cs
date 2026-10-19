@@ -102,19 +102,46 @@ namespace Player
         /// <param name="Slot">Checks which slot the player is trying to move an item into</param>
         /// <param name="Item">The item the player is trying to move</param>
         /// <returns></returns>
-        private int CheckAvailability(int Slot, int Item) 
+        private int CheckAvailability(int slot, int item) 
         {
              int[] satchelSlots = {24,25,26};
             //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(inventory[Slot].itemType == (int)Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
+            if(inventory[slot].itemType == (int) Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
 
             //else if(Inventory[Slot].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
 
-            else if(satchelSlots.Contains((int)inventory[Slot].itemType) && inventory[Slot].itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
+            else if(satchelSlots.Contains((int)inventory[slot].itemType) && inventory[slot].itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
 
 
             else return (int)InventoryCheckDisplay.SlotCheckError;
+        }
+
+        /// <summary>
+        /// Checks if the inventory is full
+        /// </summary>
+        public void CheckInventoryFull()
+        {
+            
+        }
+
+        /// <summary>
+        /// Will check to see if a certain ammo type is currently allowed to drop
+        /// </summary>
+        public void CheckWeaponAmmoType()
+        {
+            
+        }
+
+        /// <summary>
+        /// Checks to see if you can quick add an item into your inventory
+        /// if you can't it should give the player a message that you cannot pick it up
+        /// so that when you try again, it opens your inventory so you can try to add it.
+        /// </summary>
+        /// <param name="item"></param>
+        public void QuickAdd(int item)
+        {
+            
         }
 
         /*private bool CheckSlot2(int Slot1)//Could drag in slot 2 as well, might be more efficient but we'll see
