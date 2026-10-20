@@ -12,7 +12,9 @@ namespace Player
         // that can go into the weapon satchel. The weapon satchel is a special inventory that can only hold weapons, and is not affected by the bag size.
         // Inventroy initializes as blocked and will refill to be empty on startup.
         // this might be public depending on the equip
-        private Items[] inventory = new Items [27];
+        private Items[][] inventory = new Items [7][];
+        
+        
 
         private bool pistolObtained;
         public int pistolAmmo;
@@ -48,13 +50,24 @@ namespace Player
             // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-                BagResize((int)BagTypes.None);
-
+            InitializeInventory();
+            BagResize((int)BagTypes.None);
 
         }
-            
 
-            // Update is called once per frame
+        private void InitializeInventory()
+        {
+            inventory[0] = new Items[4];
+            inventory[1] = new Items[4];
+            inventory[2] = new Items[4];
+            inventory[3] = new Items[4];
+            inventory[4] = new Items[4];
+            inventory[5] = new Items[4];
+            inventory[6] = new Items[3];
+        }
+
+
+        // Update is called once per frame
         void Update()
         {
             
@@ -66,11 +79,11 @@ namespace Player
         /// </summary>
         private void WeaponSatchelObtained()
         {
-            for(int i = 24; i < 27; i++)
+            for(int i = 0; i < 2; i++)
             {
-                if(inventory[i].itemType == (int)Items.ItemTypes.Blocked)
+                if(inventory[6][i].itemType == (int)Items.ItemTypes.Blocked)
                 {
-                    inventory[i].itemType = (int)Items.ItemTypes.Empty;
+                    inventory[6][i].itemType = (int)Items.ItemTypes.Empty;
                 }
             }
         }
@@ -81,15 +94,34 @@ namespace Player
         /// <param name="bag"> The type of bag obtained by the player</param>
         private void BagResize(int bag)
         {
-            int end = 11;
-            if(bag==(int)BagTypes.None) end = 11;
-            else if(bag==(int)BagTypes.Bag) end =15;
-            else if(bag==(int)BagTypes.Upgrade1) end = 19;
-            else if(bag==(int)BagTypes.Upgrade2) end = 23;
-            for(int i=0;i<end;i++){
-                if((int)inventory[i].itemType == (int)Items.ItemTypes.Blocked)
+            int inventoryRow = 0;
+            int inventoryRowMax = 0;
+            switch (bag)
+            {
+                case (int) BagTypes.None:
+                inventoryRowMax = 1;
+                break;
+                case (int) BagTypes.Bag:
+                inventoryRow = 2;
+                inventoryRowMax = 3;
+                break;   
+                case (int) BagTypes.Upgrade1:
+                inventoryRow = 4;
+                inventoryRowMax = 4;
+                break;
+                case (int) BagTypes.Upgrade2:
+                inventoryRow = 5;
+                inventoryRowMax = 5;
+                break;
+            }
+            
+                
+            for(int i = inventoryRow; i < inventoryRowMax; i++)
+            {
+                for(int x = 0; x < 3; x++)
                 {
-                    inventory[i].itemType = (int)Items.ItemTypes.Empty;
+                    if((int)inventory[i][x].itemType == (int) Items.ItemTypes.Blocked)
+                        inventory[i][x].itemType = (int) Items.ItemTypes.Empty;
                 }
             }
         }
@@ -102,7 +134,7 @@ namespace Player
         /// <param name="Slot">Checks which slot the player is trying to move an item into</param>
         /// <param name="Item">The item the player is trying to move</param>
         /// <returns></returns>
-        private int CheckAvailability(int slot, int item) 
+        /*private int CheckAvailability(int slot, int item) 
         {
              int[] satchelSlots = {24,25,26};
             //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
@@ -115,7 +147,7 @@ namespace Player
 
 
             else return (int)InventoryCheckDisplay.SlotCheckError;
-        }
+        }*/
 
         /// <summary>
         /// Checks if the inventory is full
