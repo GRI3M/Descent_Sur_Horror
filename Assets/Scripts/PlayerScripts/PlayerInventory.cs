@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using UnityEngine;
 using ItemScripts;
+using ItemScripts.AmmoManagement;
+using System.Collections;
 
 namespace Player
 {
@@ -12,9 +14,11 @@ namespace Player
         // that can go into the weapon satchel. The weapon satchel is a special inventory that can only hold weapons, and is not affected by the bag size.
         // Inventroy initializes as blocked and will refill to be empty on startup.
         // this might be public depending on the equip
-        private Items[][] inventory = new Items [7][];
+        public Items[][] inventory = new Items [7][];
         
-        
+        public AmmoManagement ammoManagement;
+
+        public int bagSize = (int) BagTypes.None;
 
         private bool pistolObtained;
         public int pistolAmmo;
@@ -150,11 +154,46 @@ namespace Player
         }*/
 
         /// <summary>
-        /// Checks if the inventory is full
+        /// Checks if the inventory is full and returns the next empty slot
         /// </summary>
-        public void CheckInventoryFull()
+        public bool CheckInventoryFull(out int inventoryRow, out int inventoryColumn)
         {
-            
+            int bagSizeCounter = BagCheck();
+            for (int x = 0; x < bagSizeCounter; x++)
+            {
+                for (int y = 0; 0 < 3; y++)
+                    if (inventory[x][y].itemType == (int)InventoryCheckDisplay.Empty)
+                    {
+                        inventoryRow = x;
+                        inventoryColumn = y;
+                        return false;
+                    }
+                        
+            }
+            inventoryRow = -1;
+            inventoryColumn = -1;
+            return true;
+        }
+
+        private int BagCheck()
+        {
+            int bagSizeCounter = 1;
+            switch (bagSize)
+            {
+                case (int)BagTypes.None:
+                    break;
+                case (int)BagTypes.Bag:
+                    bagSizeCounter = 3;
+                    break;
+                case (int)BagTypes.Upgrade1:
+                    bagSizeCounter = 4;
+                    break;
+                case (int)BagTypes.Upgrade2:
+                    bagSizeCounter = 5;
+                    break;
+            }
+
+            return bagSizeCounter;
         }
 
         /// <summary>
