@@ -8,24 +8,15 @@ using UnityEditor.PackageManager;
 using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 using UnityEngine.Rendering;
+using ItemScripts.AmmoScript;
 
 
-namespace ItemScripts.AmmoManagement
+namespace ItemScripts.AmmoManagementScript
 {
     public class AmmoManagement : MonoBehaviour
     {
         
 
-        public enum AmmoTypes
-        {
-            PistolAmmo,
-            ShotgunAmmo,
-            SMGAmmo,
-            RifleAmmo,
-            SniperAmmo,
-            HandcannonAmmo,
-            GrenadeLauncherAmmo,
-        }
         [Header("Player Inventory Tie-in")]
         public PlayerInventory playerInventory;
 
@@ -39,7 +30,12 @@ namespace ItemScripts.AmmoManagement
         public List<Ammo> grenadeLauncherAmmoTracker;
 
         
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ammoInsertType">The type of ammo being inserted</param>
+        /// <param name="ammoInsertAmount">The amount of ammo being inserted</param>
+        /// <returns> whether the ammo was added or not</returns>
         public bool AddAmmo(int ammoInsertType, int ammoInsertAmount)
         {
             if(CheckAmmoType(ammoInsertType))
@@ -47,6 +43,7 @@ namespace ItemScripts.AmmoManagement
                 List<Ammo> tempAmmoTracker = GetAmmoTypeList(ammoInsertType);
                 for(int x = 0; x < tempAmmoTracker.Count(); x++)
                 {
+                    ///Condense this down to a method
                     Ammo tempAmmo = tempAmmoTracker[x];
                     int tempAmmoMax = tempAmmo.maxAmmo;
                     int tempCurrentAmmo = tempAmmo.currentAmmo;    
@@ -63,21 +60,24 @@ namespace ItemScripts.AmmoManagement
                             UpdateAmmo(ammoInsertType, tempCurrentAmmo + ammoInsertAmount, x, tempAmmo.inventoryTracker);
                             return true;  
                         }
-
                     }
+                    ///Condense all above down to a single method
                 }
             }
+            ///Condense down to method
             int tempInventoryRow = -1;
             int tempInventoryColumn = -1;
             if (!playerInventory.CheckInventoryFull(out tempInventoryRow, out tempInventoryColumn))
             {
-                CreateAmmo(ammoInsertType, new AmmoInventoryTracker(tempInventoryRow, tempInventoryColumn, ammoInsertType), ammoInsertAmount);
+                CreateAmmo(ammoInsertType, new AmmoInventoryTracker(tempInventoryRow, tempInventoryColumn), ammoInsertAmount);
                 return true;
             }
             else
             {
                 return false;   
             }
+            ///Condense above down to a method
+
             ///if the inventory isn't full, then create a new ammo brick
             /// for the specific ammo type and add it to that ammo tracking type
             //if(inventory != full)
@@ -85,6 +85,11 @@ namespace ItemScripts.AmmoManagement
             //else return that you cannot add to inventory 
         }
 
+        /// <summary>
+        /// Gets the ammo list of the ammo type inserted
+        /// </summary>
+        /// <param name="ammoType">The type of ammo needed</param>
+        /// <returns>The ammo type tracking list</returns>
         public List<Ammo> GetAmmoTypeList(int ammoType)
         {
             switch (ammoType)
@@ -108,6 +113,11 @@ namespace ItemScripts.AmmoManagement
             return ammoTrackingList;
         }
 
+        /// <summary>
+        /// Checks if there are any ammo bricks for the ammo attempting to be added
+        /// </summary>
+        /// <param name="ammoType">The type of ammo needed</param>
+        /// <returns> If there is ammo avalible to add to </returns>
         public bool CheckAmmoType(int ammoType)
         {
             switch (ammoType)
@@ -130,6 +140,13 @@ namespace ItemScripts.AmmoManagement
             return false;
         }
 
+        /// <summary>
+        /// Updates the inventory and ammo tracker to the new ammount (can be more or less)
+        /// </summary>
+        /// <param name="ammoType">The ammo type needed</param>
+        /// <param name="ammoAmount">The amount of ammo</param>
+        /// <param name="ammoSlot">The ammo slot the ammo occupies</param>
+        /// <param name="ait">The inventory slot the ammo occupies</param>
         public void UpdateAmmo(int ammoType, int ammoAmount, int ammoSlot, AmmoInventoryTracker ait)
         {
             switch (ammoType)
@@ -165,6 +182,12 @@ namespace ItemScripts.AmmoManagement
             }
         }
 
+        /// <summary>
+        /// Creates a new ammo brick and adds it to the inventory and ammo tracker
+        /// </summary>
+        /// <param name="ammoType">The ammo type needed</param>
+        /// <param name="ait">The inventory slot the ammo will take up</param>
+        /// <param name="ammoAmount">The amount of ammo being created</param>
         public void CreateAmmo(int ammoType, AmmoInventoryTracker ait, int ammoAmount)
         {
             switch (ammoType)
@@ -210,149 +233,7 @@ namespace ItemScripts.AmmoManagement
 
 
 
-
-
-
-        public class Ammo : Items
-        {
-            [Header("Ammo Identification")]
-            public string ammoName;
-            public int ammoType;
-            public AmmoInventoryTracker inventoryTracker;
-
-            [Header("Ammo Attributes")]
-            public int currentAmmo;
-            public int maxAmmo;
-            public float dropChance;
-        }
-
-        public class PistolAmmo : Ammo
-        {
-            public PistolAmmo(AmmoInventoryTracker inventorySlot, int ammoAmount)
-            {
-                ammoName = "Pistol Ammo";
-                ammoType = (int) AmmoTypes.PistolAmmo;
-                inventoryTracker = inventorySlot;
-
-                currentAmmo = ammoAmount;
-                maxAmmo = 45;
-                dropChance = 0.40f;
-            }
-
-
-        }
-
-        public class ShotgunAmmo : Ammo
-        {
-            public ShotgunAmmo(AmmoInventoryTracker inventroySlot, int ammoAmount)
-            {
-                ammoName = "Shotgun Ammo";
-                ammoType = (int) AmmoTypes.ShotgunAmmo;
-                inventoryTracker = inventroySlot;
-
-                currentAmmo = ammoAmount;
-                maxAmmo = 30;
-                dropChance = 0.33f;
-            }
-
-        }
-
-        public class SMGAmmo : Ammo
-        {
-            public SMGAmmo(AmmoInventoryTracker inventroySlot, int ammoAmount)
-            {
-                ammoName = "SMG Ammo";
-                ammoType = (int) AmmoTypes.SMGAmmo;
-                inventoryTracker = inventroySlot;
-
-                currentAmmo = ammoAmount;
-                maxAmmo = 60;
-                dropChance = 0.33f;
-            }
-        }
-
-        public class RifleAmmo : Ammo
-        {
-            public RifleAmmo(AmmoInventoryTracker inventroySlot, int ammoAmount)
-            {
-                ammoName = "Rifle Ammo";
-                ammoType = (int) AmmoTypes.RifleAmmo;                
-                inventoryTracker = inventroySlot;
-
-                currentAmmo = ammoAmount;
-                maxAmmo = 40;
-                dropChance = 0.33f;
-            }
-
-            
-        }
-
-        public class SniperAmmo : Ammo
-        {
-            public SniperAmmo(AmmoInventoryTracker inventroySlot, int ammoAmount)
-            {
-                
-                ammoName = "Sniper Ammo";
-                ammoType = (int) AmmoTypes.SniperAmmo;                
-                inventoryTracker = inventroySlot;
-
-                currentAmmo = ammoAmount;
-                maxAmmo = 15;
-                dropChance = 0.15f;
-            }
-        }
-
-        public class HandcannonAmmo : Ammo
-        {
-            public HandcannonAmmo(AmmoInventoryTracker inventroySlot, int ammoAmount)
-            {
-                ammoName = "HandcannonAmmo";
-                ammoType = (int) AmmoTypes.HandcannonAmmo;                
-                inventoryTracker = inventroySlot;
-
-                currentAmmo = ammoAmount;                
-                maxAmmo = 15;
-                dropChance = 0.1f;
-            }
-        }
-
-        public class GrenadeLauncherAmmo : Ammo
-        {
-            public GrenadeLauncherAmmo(AmmoInventoryTracker inventroySlot, int ammoAmount)
-            {
-                ammoName = "Grenade Launcer Ammo";
-                ammoType = (int) AmmoTypes.GrenadeLauncherAmmo;                
-                inventoryTracker = inventroySlot;
-
-                currentAmmo = ammoAmount;
-                maxAmmo = 5;
-                dropChance = 0.1f;
-            }
-
-        }
-
-        public class ErrorAmmo : Ammo
-        {
-            public ErrorAmmo()
-            {
-                ammoName = "This is a Error";
-                ammoType = -1;
-            }
-        }
-
-        public class AmmoInventoryTracker : MonoBehaviour
-        {
-            public int inventoryRow;
-            public int inventoryColumn;
-            public int ammoType;
-
-            public AmmoInventoryTracker(int ir, int ic, int at)
-            {
-                inventoryRow = ir;
-                inventoryRow = ic;
-                ammoType = at;
-            }
-        }
+        
         
     }
 }
