@@ -29,65 +29,41 @@ namespace ItemScripts.AmmoManagement
         [Header("Player Inventory Tie-in")]
         public PlayerInventory playerInventory;
 
-        [Header("Overall Ammo Tracker")]
-        public List<Ammo> ammoTracker;
-
         [Header("Trackers For Individual Ammo Types")]
-        /// For each specific ammo tracker, it keeps track of 
-        /// the ammoTracker slot it takes up
-        /// Might remove the bools and create a method that checks 
-        /// that a weapons ammo tracker has a count that's greater than 0
-        public List<AmmoInventoryTracker> pistolAmmoTracker;
-        public bool collectPistolAmmo;
-        public List<AmmoInventoryTracker> shotgunAmmoTracker;
-        public bool collectShotgunAmmo;
-        public List<AmmoInventoryTracker> smgAmmoTracker;
-        public bool collectSMGAmmo;
-        public List<AmmoInventoryTracker> sniperAmmoTracker;
-        public bool collectSniperAmmo;
-        public List<AmmoInventoryTracker> rifleAmmoTracker;
-        public bool collectRifleAmmo;
-        public List<AmmoInventoryTracker> handcannonAmmoTracker;
-        public bool collectHandcannonAmmo;
-        public List<AmmoInventoryTracker> grenadeLauncherAmmoTracker;
-        public bool collectGrenadeLauncherAmmo;
+        public List<Ammo> pistolAmmoTracker;
+        public List<Ammo> shotgunAmmoTracker;
+        public List<Ammo> smgAmmoTracker;
+        public List<Ammo> sniperAmmoTracker;
+        public List<Ammo> rifleAmmoTracker;
+        public List<Ammo> handcannonAmmoTracker;
+        public List<Ammo> grenadeLauncherAmmoTracker;
 
-        [Header("Trackers Of Ammo Types")]
-        public int[] ammoTypeTracker = new int[7];
         
 
-        public void AddAmmo(int ammoInsertType, int ammoInsertAmount)
+        public bool AddAmmo(int ammoInsertType, int ammoInsertAmount)
         {
-
-            /// Remove this check and update it to check the ammo type list count
-            /// for the specific ammo type. this could be a method, if the Ammo Inventory Tracker is deleted
-            /// from the list, then it can be deleted
-            for(int i = 0; i < ammoTypeTracker.Count(); i++)
+            if(CheckAmmoType(ammoInsertType))
             {
-                //Check that player has ammo type tracked
-                if(ammoTypeTracker[i] == ammoInsertType)
+                List<Ammo> tempAmmoTracker = GetAmmoTypeList(ammoInsertType);
+                for(int x = 0; x < tempAmmoTracker.Count(); x++)
                 {
-                    List<AmmoInventoryTracker> tempAmmoTracker = GetAmmoTypeList(ammoInsertType);
-                    for(int x = 0; x < tempAmmoTracker.Count(); x++)
+                    Ammo tempAmmo = tempAmmoTracker[x];
+                    int tempAmmoMax = tempAmmo.maxAmmo;
+                    int tempCurrentAmmo = tempAmmo.currentAmmo;    
+                    if(ammoInsertAmount < tempAmmoMax)
                     {
-                        Ammo tempAmmo = ammoTracker[tempAmmoTracker[x].ammoTrackerSlot];
-                        int tempAmmoMax = tempAmmo.maxAmmo;
-                        int tempCurrentAmmo = tempAmmo.currentAmmo;    
-                        if(ammoInsertAmount < tempAmmoMax)
+                        if(ammoInsertAmount + tempCurrentAmmo > tempAmmoMax)
                         {
-                            if(ammoInsertAmount + tempCurrentAmmo > tempAmmoMax)
-                            {
-                                int ammoLeft = tempCurrentAmmo + ammoInsertAmount - tempAmmoMax;
-                                ammoTracker[tempAmmoTracker[x].ammoTrackerSlot].currentAmmo = tempAmmoMax;
-                                AddAmmo(ammoInsertType, ammoLeft);
-                            }
-                            else
-                            {
-                                ammoTracker[tempAmmoTracker[x].ammoTrackerSlot].currentAmmo += ammoInsertAmount;
-                                return;  
-                            }
-   
+                            int ammoLeft = tempCurrentAmmo + ammoInsertAmount - tempAmmoMax;
+                            UpdateAmmo(ammoInsertType, tempAmmoMax, x, tempAmmo.inventoryTracker);
+                            AddAmmo(ammoInsertType, ammoLeft);
                         }
+                        else
+                        {
+                            UpdateAmmo(ammoInsertType, tempCurrentAmmo + ammoInsertAmount, x, tempAmmo.inventoryTracker);
+                            return true;  
+                        }
+
                     }
                 }
             }
@@ -95,13 +71,12 @@ namespace ItemScripts.AmmoManagement
             int tempInventoryColumn = -1;
             if (!playerInventory.CheckInventoryFull(out tempInventoryRow, out tempInventoryColumn))
             {
-                //Need to test this because it should get the next spot that's going to be avaliable after appending
-                Ammo tempAmmo = CreateAmmo(ammoInsertType, new AmmoInventoryTracker(tempInventoryRow, tempInventoryColumn, ammoTracker.Count(), ammoInsertType), ammoInsertAmount);
-                ammoTracker.Append(tempAmmo);
+                CreateAmmo(ammoInsertType, new AmmoInventoryTracker(tempInventoryRow, tempInventoryColumn, ammoInsertType), ammoInsertAmount);
+                return true;
             }
             else
             {
-                
+                return false;   
             }
             ///if the inventory isn't full, then create a new ammo brick
             /// for the specific ammo type and add it to that ammo tracking type
@@ -110,7 +85,7 @@ namespace ItemScripts.AmmoManagement
             //else return that you cannot add to inventory 
         }
 
-        public List<AmmoInventoryTracker> GetAmmoTypeList(int ammoType)
+        public List<Ammo> GetAmmoTypeList(int ammoType)
         {
             switch (ammoType)
             {
@@ -129,37 +104,107 @@ namespace ItemScripts.AmmoManagement
                 case(int) AmmoTypes.GrenadeLauncherAmmo:
                     return grenadeLauncherAmmoTracker; 
             }
-            List<AmmoInventoryTracker> ammoTrackingList = new List<AmmoInventoryTracker>();
+            List<Ammo> ammoTrackingList = new List<Ammo>();
             return ammoTrackingList;
         }
 
-        public Ammo CreateAmmo(int ammoType, AmmoInventoryTracker ait, int ammoAmount)
+        public bool CheckAmmoType(int ammoType)
         {
             switch (ammoType)
             {
                 case (int) AmmoTypes.PistolAmmo:
-                    pistolAmmoTracker.Add(ait);
-                    return new PistolAmmo(ait, ammoAmount);
+                    return pistolAmmoTracker.Count() > 0;
                 case (int) AmmoTypes.ShotgunAmmo:
-                    shotgunAmmoTracker.Add(ait);
-                    return new ShotgunAmmo(ait, ammoAmount);
+                    return shotgunAmmoTracker.Count() > 0;
                 case (int) AmmoTypes.SniperAmmo:
-                    sniperAmmoTracker.Add(ait);
-                    return new SniperAmmo(ait, ammoAmount);
+                    return sniperAmmoTracker.Count() > 0;
                 case (int) AmmoTypes.SMGAmmo:
-                    smgAmmoTracker.Add(ait);
-                    return new SMGAmmo(ait, ammoAmount);
+                    return smgAmmoTracker.Count() > 0;
                 case (int) AmmoTypes.RifleAmmo:
-                    rifleAmmoTracker.Add(ait);
-                    return new RifleAmmo(ait, ammoAmount);
+                    return rifleAmmoTracker.Count() > 0;
                 case (int) AmmoTypes.HandcannonAmmo:
-                    handcannonAmmoTracker.Add(ait);
-                    return new HandcannonAmmo(ait, ammoAmount);
+                    return handcannonAmmoTracker.Count() > 0;
                 case(int) AmmoTypes.GrenadeLauncherAmmo:
-                    grenadeLauncherAmmoTracker.Add(ait);
-                    return new GrenadeLauncherAmmo(ait, ammoAmount);
+                    return grenadeLauncherAmmoTracker.Count() > 0;
             }
-            return new PistolAmmo(ait, ammoAmount);
+            return false;
+        }
+
+        public void UpdateAmmo(int ammoType, int ammoAmount, int ammoSlot, AmmoInventoryTracker ait)
+        {
+            switch (ammoType)
+            {
+                case (int) AmmoTypes.PistolAmmo:
+                    pistolAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = pistolAmmoTracker[ammoSlot];
+                    return;
+                case (int) AmmoTypes.ShotgunAmmo:
+                    shotgunAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = shotgunAmmoTracker[ammoSlot];
+                    return;
+                case (int) AmmoTypes.SniperAmmo:
+                    sniperAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = sniperAmmoTracker[ammoSlot];
+                    return;
+                case (int) AmmoTypes.SMGAmmo:
+                    smgAmmoTracker[ammoAmount].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = smgAmmoTracker[ammoAmount];
+                    return;
+                case (int) AmmoTypes.RifleAmmo:
+                    rifleAmmoTracker[ammoAmount].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = rifleAmmoTracker[ammoSlot];
+                    return;
+                case (int) AmmoTypes.HandcannonAmmo:
+                    handcannonAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = handcannonAmmoTracker[ammoSlot];
+                    return;
+                case(int) AmmoTypes.GrenadeLauncherAmmo:
+                    grenadeLauncherAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = handcannonAmmoTracker[ammoSlot];
+                    return;
+            }
+        }
+
+        public void CreateAmmo(int ammoType, AmmoInventoryTracker ait, int ammoAmount)
+        {
+            switch (ammoType)
+            {
+                case (int) AmmoTypes.PistolAmmo:
+                    PistolAmmo tempPAmmo = new PistolAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempPAmmo;
+                    pistolAmmoTracker.Add(tempPAmmo);
+                    return;
+                case (int) AmmoTypes.ShotgunAmmo:
+                    ShotgunAmmo tempShAmmo = new ShotgunAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempShAmmo;
+                    shotgunAmmoTracker.Add(tempShAmmo);
+                    return;
+                case (int) AmmoTypes.SniperAmmo:
+                    SniperAmmo tempSnAmmo = new SniperAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempSnAmmo;
+                    sniperAmmoTracker.Add(tempSnAmmo);
+                    return;
+                case (int) AmmoTypes.SMGAmmo:
+                    SMGAmmo tempSMGAmmo = new SMGAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempSMGAmmo;
+                    smgAmmoTracker.Add(tempSMGAmmo);
+                    return;
+                case (int) AmmoTypes.RifleAmmo:
+                    RifleAmmo tempRAmmo = new RifleAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempRAmmo;
+                    rifleAmmoTracker.Add(tempRAmmo);
+                    return;
+                case (int) AmmoTypes.HandcannonAmmo:
+                    HandcannonAmmo tempHAmmo = new HandcannonAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempHAmmo;
+                    handcannonAmmoTracker.Add(tempHAmmo);
+                    return;
+                case(int) AmmoTypes.GrenadeLauncherAmmo:
+                    GrenadeLauncherAmmo tempGLAmmo = new GrenadeLauncherAmmo(ait, ammoAmount);
+                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempGLAmmo;
+                    grenadeLauncherAmmoTracker.Add(tempGLAmmo);
+                    return;
+            }
         }
 
 
@@ -299,14 +344,12 @@ namespace ItemScripts.AmmoManagement
         {
             public int inventoryRow;
             public int inventoryColumn;
-            public int ammoTrackerSlot;
             public int ammoType;
 
-            public AmmoInventoryTracker(int ir, int ic, int ats, int at)
+            public AmmoInventoryTracker(int ir, int ic, int at)
             {
                 inventoryRow = ir;
                 inventoryRow = ic;
-                ammoTrackerSlot = ats;
                 ammoType = at;
             }
         }
