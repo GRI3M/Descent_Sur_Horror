@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using ItemScripts;
-using ItemScripts.AmmoManagement;
+using ItemScripts.AmmoManagementScript;
 using System.Collections;
 
 namespace Player
@@ -161,7 +161,7 @@ namespace Player
             int bagSizeCounter = BagCheck();
             for (int x = 0; x < bagSizeCounter; x++)
             {
-                for (int y = 0; 0 < 3; y++)
+                for (int y = 0; y < 3; y++)
                     if (inventory[x][y].itemType == (int)InventoryCheckDisplay.Empty)
                     {
                         inventoryRow = x;
