@@ -43,24 +43,13 @@ namespace ItemScripts.AmmoManagementScript
                 List<Ammo> tempAmmoTracker = GetAmmoTypeList(ammoInsertType);
                 int ammoLeft = ammoInsertAmount;
                 for (int x = 0; x < tempAmmoTracker.Count(); x++)
-                {
-                    ///If The current Ammo count is less than the max, then add to ammo
+                {  ///If The current Ammo count is less than the max, then add to ammo
                     if (tempAmmoTracker[x].currentAmmo < tempAmmoTracker[x].maxAmmo)
-                    {
                         ///Add to ammo, if the added ammo is depleted, then return true, else add to next brick
                         if (HandleAddToAmmo(tempAmmoTracker[x], ref ammoLeft, x)) return true;
-                    }
-                }
-                ///If ammo is not added to an existing pile
+                } ///If ammo is not added to an existing pile  
             }
             return HandleAddNewAmmo(ammoInsertType, ammoInsertAmount);
-
-
-            ///if the inventory isn't full, then create a new ammo brick
-            /// for the specific ammo type and add it to that ammo tracking type
-            //if(inventory != full)
-            //ammoTracker.Append(ammoInsert);
-            //else return that you cannot add to inventory 
         }
 
         /// <summary>
