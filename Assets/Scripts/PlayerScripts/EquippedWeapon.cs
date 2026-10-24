@@ -14,6 +14,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         StarterAssetsInputs starterAssetsInputs;
         Guns equippedGun;
         const string SHOOT_STR = "ShootWeapon"; 
+        float timeSinceLastShot = 0f;
 
         void Start()
         {
@@ -28,6 +29,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
 
         void Update()
         {
+            timeSinceLastShot += Time.deltaTime;
             Damage();
         }
 
@@ -35,8 +37,12 @@ namespace ItemScripts.WeaponScripts.GunScripts
         {
             if(!starterAssetsInputs.shoot) return;
 
-            equippedGun.Shoot(gunSO);
-            gunAnimator.Play(SHOOT_STR, 0, 0f);            
+            if(timeSinceLastShot > gunSO.fireRate)
+            {
+                equippedGun.Shoot(gunSO);
+                gunAnimator.Play(SHOOT_STR, 0, 0f);
+                timeSinceLastShot = 0f;
+            }            
             starterAssetsInputs.ShootInput(false);
         }
 

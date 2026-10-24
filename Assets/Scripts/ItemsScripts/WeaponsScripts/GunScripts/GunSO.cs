@@ -1,18 +1,27 @@
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "GunSO", menuName = "Scriptable Objects/GunSO")]
-public class GunSO : ScriptableObject
+namespace ItemScripts.WeaponScripts.GunScripts
 {
-    [SerializeField]public int capacity;
-    [SerializeField]public int currentAmmo;
-    [SerializeField]public float reloadSpeed;
-    [SerializeField]public float fireRate;
-    [SerializeField]public bool automatic = false;
-    [SerializeField]public int gunType;
-    [SerializeField]public float accuracy;
-    [SerializeField]public float accuracyUnscoped;
+    [System.Serializable]
+    [CreateAssetMenu(fileName = "GunSO", menuName = "Scriptable Objects/GunSO")]
+    public class GunSO : WeaponSO
+    {  
+        [Header("Gun Attributes")]
+        public int capacity;
+        public int currentAmmo;
+        public float reloadSpeed;
+        public float fireRate;
+        public bool automatic = false;
+        public int gunType;
+        public float accuracy;
+        public float accuracyUnscoped;
 
-    [SerializeField]public GameObject hitVFX;
+        public GameObject hitVFX;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            weaponType = (int)Weapons.WeaponTypes.Gun;
+        }
+    }
 }
-

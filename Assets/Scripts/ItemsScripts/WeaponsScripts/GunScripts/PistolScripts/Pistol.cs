@@ -7,7 +7,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
 
     public class Pistol : Guns
     {
-
         public enum PistolTypes
         {
             Glock18,
@@ -16,11 +15,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
             FiveSeven,
             M1911,
             Tech9,
-        }
-        [Header("Pistol Attributes")]
-        public int pistolType;
-
-
-        
+        }        
     }
 }

@@ -12,10 +12,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
             Barret50Calibur,
             AWP,
         }
-
-        [Header("Sniper Attributes")]
-        public int sniperType;
-        public bool rechamber;
                 
     }
 }

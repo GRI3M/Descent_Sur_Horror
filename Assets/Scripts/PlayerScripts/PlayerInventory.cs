@@ -66,7 +66,7 @@ namespace Player
         void Start()
         {
             InitializeInventory();
-            BagResize((int)BagTypes.None);
+            //BagResize((int)BagTypes.None);
 
         }
 
@@ -92,54 +92,54 @@ namespace Player
         /// This function is called when the player obtains a weapon satchel. It will unlock the 3 slots in the inventory that are reserved for weapons, allowing the player to store weapons in those slots.
         /// The weapon satchel can only hold weapons that are at least 2 units in size.
         /// </summary>
-        private void WeaponSatchelObtained()
-        {
-            for(int i = 0; i < 2; i++)
-            {
-                if(inventory[6][i].itemType == (int)Items.ItemTypes.Blocked)
-                {
-                    inventory[6][i].itemType = (int)Items.ItemTypes.Empty;
-                }
-            }
-        }
+        // private void WeaponSatchelObtained()
+        // {
+        //     for(int i = 0; i < 2; i++)
+        //     {
+        //         if(inventory[6][i].itemType == (int)Items.ItemTypes.Blocked)
+        //         {
+        //             inventory[6][i].itemType = (int)Items.ItemTypes.Empty;
+        //         }
+        //     }
+        // }
 
         /// <summary>
         /// Resize the palyer's inventory on start up to default size, or when player obtains a new bag.
         /// </summary>
         /// <param name="bag"> The type of bag obtained by the player</param>
-        private void BagResize(int bag)
-        {
-            int inventoryRow = 0;
-            int inventoryRowMax = 0;
-            switch (bag)
-            {
-                case (int) BagTypes.None:
-                inventoryRowMax = 1;
-                break;
-                case (int) BagTypes.Bag:
-                inventoryRow = 2;
-                inventoryRowMax = 3;
-                break;   
-                case (int) BagTypes.Upgrade1:
-                inventoryRow = 4;
-                inventoryRowMax = 4;
-                break;
-                case (int) BagTypes.Upgrade2:
-                inventoryRow = 5;
-                inventoryRowMax = 5;
-                break;
-            }
+        // private void BagResize(int bag)
+        // {
+        //     int inventoryRow = 0;
+        //     int inventoryRowMax = 0;
+        //     switch (bag)
+        //     {
+        //         case (int) BagTypes.None:
+        //         inventoryRowMax = 1;
+        //         break;
+        //         case (int) BagTypes.Bag:
+        //         inventoryRow = 2;
+        //         inventoryRowMax = 3;
+        //         break;   
+        //         case (int) BagTypes.Upgrade1:
+        //         inventoryRow = 4;
+        //         inventoryRowMax = 4;
+        //         break;
+        //         case (int) BagTypes.Upgrade2:
+        //         inventoryRow = 5;
+        //         inventoryRowMax = 5;
+        //         break;
+        //     }
             
                 
-            for(int i = inventoryRow; i < inventoryRowMax; i++)
-            {
-                for(int x = 0; x < 3; x++)
-                {
-                    if((int)inventory[i][x].itemType == (int) Items.ItemTypes.Blocked)
-                        inventory[i][x].itemType = (int) Items.ItemTypes.Empty;
-                }
-            }
-        }
+            // for(int i = inventoryRow; i < inventoryRowMax; i++)
+            // {
+            //     for(int x = 0; x < 3; x++)
+            //     {
+            //         if((int)inventory[i][x].itemType == (int) Items.ItemTypes.Blocked)
+            //             inventory[i][x].itemType = (int) Items.ItemTypes.Empty;
+            //     }
+            // }
+        //}
 
         /// <summary>
         /// Checks the current inventory slot player is trying to move an item into and checks if the item can be placed in that slot. Returns 1 if the item can be placed, 0 if the slot is blocked,
@@ -164,35 +164,35 @@ namespace Player
             else return (int)InventoryCheckDisplay.SlotCheckError;
         }*/
 
-        public void SwitchWeapon(Weapons weapon)
-        {
-            equippedWeapon = weapon;
-            if(weapon.weaponType == (int) Weapons.WeaponTypes.Gun) equippedGun = (Guns) weapon;
-            else equippedGun = null;
-        }
+        // public void SwitchWeapon(Weapons weapon)
+        // {
+        //     equippedWeapon = weapon;
+        //     if(weapon.weaponType == (int) Weapons.WeaponTypes.Gun) equippedGun = (Guns) weapon;
+        //     else equippedGun = null;
+        // }
 
         /// <summary>
         /// Checks the equipped gun and attempts to reload it to full capacity 
         /// </summary>
         /// <returns>Whether the gun was reloaded to any capacity</returns>
-        public bool ReloadEquippedGun()
-        {
-            if(equippedWeapon.weaponType == (int)Weapons.WeaponTypes.Gun)
-            {
-                if (ammoManagement.CheckAmmoType(equippedWeapon.weaponType))
-                {
-                    List<Ammo> tempAmmoList = ammoManagement.GetAmmoTypeList(equippedWeapon.weaponType);
-                    //int reloadAmount = 0;
-                    for(int x = 0; x < tempAmmoList.Count(); x++)
-                    {
-                        //if(HandleReload(tempAmmoList[x], ref reloadAmount, x)) return true;           
-                    }
-                    //equippedGun.currentAmmo = reloadAmount; //Commenting things out until issue gets resolved
-                    return true;
-                }
-            }
-            return false;
-        }
+        // public bool ReloadEquippedGun()
+        // {
+        //     if(equippedWeapon.weaponType == (int)Weapons.WeaponTypes.Gun)
+        //     {
+        //         if (ammoManagement.CheckAmmoType(equippedWeapon.weaponType))
+        //         {
+        //             List<Ammo> tempAmmoList = ammoManagement.GetAmmoTypeList(equippedWeapon.weaponType);
+        //             //int reloadAmount = 0;
+        //             for(int x = 0; x < tempAmmoList.Count(); x++)
+        //             {
+        //                 //if(HandleReload(tempAmmoList[x], ref reloadAmount, x)) return true;           
+        //             }
+        //             //equippedGun.currentAmmo = reloadAmount; //Commenting things out until issue gets resolved
+        //             return true;
+        //         }
+        //     }
+        //     return false;
+        // }
 
         /// <summary>
         /// Handles all portions needed to reload a weapon and deplete ammo pools
@@ -224,24 +224,24 @@ namespace Player
         /// <summary>
         /// Checks if the inventory is full and returns the next empty slot
         /// </summary>
-        public bool CheckInventoryFull(out int inventoryRow, out int inventoryColumn)
-        {
-            int bagSizeCounter = BagCheck();
-            for (int x = 0; x < bagSizeCounter; x++)
-            {
-                for (int y = 0; y < 3; y++)
-                    if (inventory[x][y].itemType == (int)InventoryCheckDisplay.Empty)
-                    {
-                        inventoryRow = x;
-                        inventoryColumn = y;
-                        return false;
-                    }
+        // public bool CheckInventoryFull(out int inventoryRow, out int inventoryColumn)
+        // {
+        //     int bagSizeCounter = BagCheck();
+        //     for (int x = 0; x < bagSizeCounter; x++)
+        //     {
+        //         for (int y = 0; y < 3; y++)
+        //             if (inventory[x][y].itemType == (int)InventoryCheckDisplay.Empty)
+        //             {
+        //                 inventoryRow = x;
+        //                 inventoryColumn = y;
+        //                 return false;
+        //             }
                         
-            }
-            inventoryRow = -1;
-            inventoryColumn = -1;
-            return true;
-        }
+        //     }
+        //     inventoryRow = -1;
+        //     inventoryColumn = -1;
+        //     return true;
+        // }
 
         private int BagCheck()
         {

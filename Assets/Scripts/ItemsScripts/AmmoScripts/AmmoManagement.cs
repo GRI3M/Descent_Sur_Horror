@@ -36,21 +36,21 @@ namespace ItemScripts.AmmoManagementScript
         /// <param name="ammoInsertType">The type of ammo being inserted</param>
         /// <param name="ammoInsertAmount">The amount of ammo being inserted</param>
         /// <returns> whether the ammo was added or not</returns>
-        public bool AddAmmo(int ammoInsertType, int ammoInsertAmount)
-        {
-            if (CheckAmmoType(ammoInsertType))
-            {
-                List<Ammo> tempAmmoTracker = GetAmmoTypeList(ammoInsertType);
-                int ammoLeft = ammoInsertAmount;
-                for (int x = 0; x < tempAmmoTracker.Count(); x++)
-                {  ///If The current Ammo count is less than the max, then add to ammo
-                    if (tempAmmoTracker[x].currentAmmo < tempAmmoTracker[x].maxAmmo)
-                        ///Add to ammo, if the added ammo is depleted, then return true, else add to next brick
-                        if (HandleAddToAmmo(tempAmmoTracker[x], ref ammoLeft, x)) return true;
-                } ///If ammo is not added to an existing pile  
-            }
-            return HandleAddNewAmmo(ammoInsertType, ammoInsertAmount);
-        }
+        // public bool AddAmmo(int ammoInsertType, int ammoInsertAmount)
+        // {
+        //     if (CheckAmmoType(ammoInsertType))
+        //     {
+        //         List<Ammo> tempAmmoTracker = GetAmmoTypeList(ammoInsertType);
+        //         int ammoLeft = ammoInsertAmount;
+        //         for (int x = 0; x < tempAmmoTracker.Count(); x++)
+        //         {  ///If The current Ammo count is less than the max, then add to ammo
+        //             if (tempAmmoTracker[x].currentAmmo < tempAmmoTracker[x].maxAmmo)
+        //                 ///Add to ammo, if the added ammo is depleted, then return true, else add to next brick
+        //                 if (HandleAddToAmmo(tempAmmoTracker[x], ref ammoLeft, x)) return true;
+        //         } ///If ammo is not added to an existing pile  
+        //     }
+        //     return HandleAddNewAmmo(ammoInsertType, ammoInsertAmount);
+        // }
 
         /// <summary>
         /// If there is room in the inventory, create a new ammo brick
@@ -58,15 +58,15 @@ namespace ItemScripts.AmmoManagementScript
         /// <param name="ammoInsertType">Ammo type being added</param>
         /// <param name="ammoInsertAmount">The amount of ammo being created</param>
         /// <returns>If an ammo brick is created or not</returns>
-        private bool HandleAddNewAmmo(int ammoInsertType, int ammoInsertAmount)
-        {
-            if (!playerInventory.CheckInventoryFull(out int tempInventoryRow, out int tempInventoryColumn))
-            {
-                CreateAmmo(ammoInsertType, new AmmoInventoryTracker(tempInventoryRow, tempInventoryColumn), ammoInsertAmount);
-                return true;
-            }
-            else return false;
-        }
+        // private bool HandleAddNewAmmo(int ammoInsertType, int ammoInsertAmount)
+        // {
+        //     if (!playerInventory.CheckInventoryFull(out int tempInventoryRow, out int tempInventoryColumn))
+        //     {
+        //         CreateAmmo(ammoInsertType, new AmmoInventoryTracker(tempInventoryRow, tempInventoryColumn), ammoInsertAmount);
+        //         return true;
+        //     }
+        //     else return false;
+        // }
 
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace ItemScripts.AmmoManagementScript
         /// <param name="ait">The position in the inventory</param>
         private void DeleteAmmo(int ammoType, int listPos, AmmoInventoryTracker ait)
         {
-            playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = new Items.EmptyItem();
+            //playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = new ItemSO.EmptyItemSO();
             switch (ammoType)
             {
                 case (int) AmmoTypes.PistolAmmo:

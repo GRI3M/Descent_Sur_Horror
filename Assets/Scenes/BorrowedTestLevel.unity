@@ -403907,6 +403907,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 780947841}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1564507263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1033294960929405371, guid: 0b4096d1b3e3cca4d8c202563fb62503, type: 3}
+  m_PrefabInstance: {fileID: 1965306654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1564507265 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4879647036148182220, guid: 0b4096d1b3e3cca4d8c202563fb62503, type: 3}
+  m_PrefabInstance: {fileID: 1965306654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564507266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564507263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759f7a2f6b1cc2a4f9bb68a7ea3e7ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.EquippedWeapon
+  gunSO: {fileID: 11400000, guid: d472d4b05b1c453419dd9563465b3905, type: 2}
+  gunAnimator: {fileID: 1564507265}
 --- !u!1 &1567114223
 GameObject:
   m_ObjectHideFlags: 0
@@ -528630,10 +528654,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCapsule Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8471041687522887692, guid: 0b4096d1b3e3cca4d8c202563fb62503, type: 3}
+      propertyPath: itemName
+      value: Glock-18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1033294960929405371, guid: 0b4096d1b3e3cca4d8c202563fb62503, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1564507266}
   m_SourcePrefab: {fileID: 100100000, guid: 0b4096d1b3e3cca4d8c202563fb62503, type: 3}
 --- !u!4 &1965306655 stripped
 Transform:

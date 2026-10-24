@@ -19,9 +19,6 @@ namespace ItemScripts.WeaponScripts.GunScripts
 
         [SerializeField] public ParticleSystem muzzleFlash;
 
-
-        
-
         public void Shoot(GunSO gunSO)
         {
             
@@ -36,17 +33,9 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 
 
                 EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
-                enemyHealth?.TakeDamage(weaponDamage);
+                enemyHealth?.TakeDamage(gunSO.gunType);
             }
             
         }
-
-        
-
-        public Guns()
-        {
-            weaponType = (int) WeaponTypes.Gun;
-        }
-
     }
 }
