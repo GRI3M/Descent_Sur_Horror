@@ -9,6 +9,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
     {
         [Header("Gun Attributes")]
         [SerializeField] public int capacity;
+        [SerializeField] public int currentAmmo;
         [SerializeField] public float reloadSpeed;
         [SerializeField] public float fireRate;
         [SerializeField] public bool automatic = false;

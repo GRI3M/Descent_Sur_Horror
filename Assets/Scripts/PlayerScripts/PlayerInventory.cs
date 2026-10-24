@@ -4,6 +4,12 @@ using UnityEngine;
 using ItemScripts;
 using ItemScripts.AmmoManagementScript;
 using System.Collections;
+using ItemScripts.WeaponScripts;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using ItemScripts.WeaponScripts.GunScripts;
+using System.Collections.Generic;
+using ItemScripts.AmmoScript;
 
 namespace Player
 {
@@ -34,6 +40,11 @@ namespace Player
         public int magnumAmmo;
         private bool grenadeLauncherObtained;
         public int grenadeLauncherAmmo;
+
+        public Weapons equippedWeapon;
+
+        public Guns equippedGun;
+
 
         public enum BagTypes  
         { 
@@ -153,6 +164,63 @@ namespace Player
             else return (int)InventoryCheckDisplay.SlotCheckError;
         }*/
 
+        public void SwitchWeapon(Weapons weapon)
+        {
+            equippedWeapon = weapon;
+            if(weapon.weaponType == (int) Weapons.WeaponTypes.Gun) equippedGun = (Guns) weapon;
+            else equippedGun = null;
+        }
+
+        /// <summary>
+        /// Checks the equipped gun and attempts to reload it to full capacity 
+        /// </summary>
+        /// <returns>Whether the gun was reloaded to any capacity</returns>
+        public bool ReloadEquippedGun()
+        {
+            if(equippedWeapon.weaponType == (int)Weapons.WeaponTypes.Gun)
+            {
+                if (ammoManagement.CheckAmmoType(equippedWeapon.weaponType))
+                {
+                    List<Ammo> tempAmmoList = ammoManagement.GetAmmoTypeList(equippedWeapon.weaponType);
+                    int reloadAmount = 0;
+                    for(int x = 0; x < tempAmmoList.Count(); x++)
+                    {
+                        if(HandleReload(tempAmmoList[x], ref reloadAmount, x)) return true;           
+                    }
+                    equippedGun.currentAmmo = reloadAmount;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Handles all portions needed to reload a weapon and deplete ammo pools
+        /// </summary>
+        /// <param name="ammo">The ammo brick being used</param>
+        /// <param name="reloadAmount">The ammount being reloaded</param>
+        /// <param name="listPos">The position in the list the ammo brick is at</param>
+        /// <returns>Whether the gun was completely reloaded</returns>
+        public bool HandleReload(Ammo ammo, ref int reloadAmount, int listPos)
+        {
+            if(ammo.currentAmmo + reloadAmount > equippedGun.capacity)
+            {
+                equippedGun.currentAmmo = equippedGun.capacity;
+                ammo.currentAmmo -= equippedGun.capacity - reloadAmount;
+                ammoManagement.HandleReload(ammo, listPos);
+                return true;
+            }
+            else
+            {
+                ammoManagement.HandleDepleteAmmo(ammo, listPos, ref reloadAmount);
+                return false;
+            }
+        }
+
+
+
+
+
         /// <summary>
         /// Checks if the inventory is full and returns the next empty slot
         /// </summary>
@@ -231,6 +299,7 @@ namespace Player
                 
             else return false;
         }*/
+
 
 
 

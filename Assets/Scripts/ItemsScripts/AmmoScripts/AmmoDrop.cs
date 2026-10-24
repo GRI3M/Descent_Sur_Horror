@@ -1,5 +1,5 @@
 using UnityEngine;
-using ItemScripts.AmmoManagement;
+using ItemScripts.AmmoManagementScript;
 using JetBrains.Annotations;
 
 
