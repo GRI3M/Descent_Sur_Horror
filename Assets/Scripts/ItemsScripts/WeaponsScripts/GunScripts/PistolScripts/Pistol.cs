@@ -10,7 +10,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
 
         public enum PistolTypes
         {
-            Glock19,
+            Glock18,
             USP,
             ArmyRevolver,
             FiveSeven,
@@ -20,10 +20,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
         [Header("Pistol Attributes")]
         public int pistolType;
 
-        public Pistol()
-        {
-            gunType = (int)Guns.GunTypes.Pistol;
-        }
 
         
     }

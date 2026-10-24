@@ -1,32 +1,11 @@
 using UnityEngine;
 using StarterAssets;
-using Enemy;
-using Unity.Mathematics;
+using Enemy; 
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class Guns : Weapons
     {
-        [Header("Gun Attributes")]
-        [SerializeField] public int capacity;
-        [SerializeField] public int currentAmmo;
-        [SerializeField] public float reloadSpeed;
-        [SerializeField] public float fireRate;
-        [SerializeField] public bool automatic = false;
-        [SerializeField] public int gunType;
-        [SerializeField] public float accuracy;
-        [SerializeField] public float accuracyUnscoped;
-
-        [Header("Plugins")]
-        [SerializeField] public ParticleSystem muzzleFlash;
-        [SerializeField] public Animator gunAnimator;
-        [SerializeField] public GameObject hitVFX;
-
-
-        StarterAssetsInputs starterAssetsInputs;
-        const string SHOOT_STR = "ShootWeapon"; 
-
-
         public enum GunTypes
         {
             Pistol,
@@ -38,39 +17,31 @@ namespace ItemScripts.WeaponScripts.GunScripts
             GrenadeLauncher,
         }
 
+        [SerializeField] public ParticleSystem muzzleFlash;
 
-        void Awake()
-        {
-            starterAssetsInputs = GetComponentInParent<StarterAssetsInputs>();
-        }
 
-        void Update()
-        {
-            Damage();
-        }
+        
 
-        void Damage()
+        public void Shoot(GunSO gunSO)
         {
             
 
-            if(!starterAssetsInputs.shoot) return;
-
             muzzleFlash.Play();
-            gunAnimator.Play(SHOOT_STR, 0, 0f);
             
             RaycastHit hit;
 
             if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
             {
-                Instantiate(hitVFX, hit.point, quaternion.identity);
+                Instantiate(gunSO.hitVFX, hit.point, Quaternion.identity);
                 
 
                 EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
                 enemyHealth?.TakeDamage(weaponDamage);
             }
             
-            starterAssetsInputs.shoot = false;
         }
+
+        
 
         public Guns()
         {
