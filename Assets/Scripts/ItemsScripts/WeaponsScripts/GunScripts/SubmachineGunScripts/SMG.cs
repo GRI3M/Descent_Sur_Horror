@@ -14,10 +14,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.SMGScripts
         [Header("SMG Attributes")]
         public int SMGType;
 
-        public SMG()
-        {
-            gunType = (int) GunTypes.SMG;
-        }
     }
     
 }

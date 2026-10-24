@@ -14,9 +14,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
 
         public int rifleType;
 
-        public Rifle()
-        {
-            gunType = (int) GunTypes.Rifle;
-        }
+
     }
 }

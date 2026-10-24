@@ -16,14 +16,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
         [Header("Sniper Attributes")]
         public int sniperType;
         public bool rechamber;
-        
-        public Sniper()
-        {
-            weaponType = (int)GunTypes.Sniper;
-            
-        }
-        
-        
-        
+                
     }
 }

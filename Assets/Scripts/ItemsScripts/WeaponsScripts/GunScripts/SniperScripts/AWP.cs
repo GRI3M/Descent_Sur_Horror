@@ -4,7 +4,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
 {
     public class AWP : Sniper
     {
-        public AWP()
+        /*public AWP()
         {
             itemName = "AWP";
             sniperType = (int) SniperTypes.AWP;
@@ -17,6 +17,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
             rechamber = true;  //slow
             accuracy = 1f;
             accuracyUnscoped = .1f;
-        }
+        }*/
     }
 }

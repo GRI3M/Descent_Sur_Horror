@@ -12,10 +12,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
 
         public int grenadeLauncherType;
 
-        public GrenadeLauncher()
-        {
-            gunType = (int) GunTypes.GrenadeLauncher;
-        }
+
     }
     
 }

@@ -182,12 +182,12 @@ namespace Player
                 if (ammoManagement.CheckAmmoType(equippedWeapon.weaponType))
                 {
                     List<Ammo> tempAmmoList = ammoManagement.GetAmmoTypeList(equippedWeapon.weaponType);
-                    int reloadAmount = 0;
+                    //int reloadAmount = 0;
                     for(int x = 0; x < tempAmmoList.Count(); x++)
                     {
-                        if(HandleReload(tempAmmoList[x], ref reloadAmount, x)) return true;           
+                        //if(HandleReload(tempAmmoList[x], ref reloadAmount, x)) return true;           
                     }
-                    equippedGun.currentAmmo = reloadAmount;
+                    //equippedGun.currentAmmo = reloadAmount; //Commenting things out until issue gets resolved
                     return true;
                 }
             }
@@ -201,7 +201,7 @@ namespace Player
         /// <param name="reloadAmount">The ammount being reloaded</param>
         /// <param name="listPos">The position in the list the ammo brick is at</param>
         /// <returns>Whether the gun was completely reloaded</returns>
-        public bool HandleReload(Ammo ammo, ref int reloadAmount, int listPos)
+        /*public bool HandleReload(Ammo ammo, ref int reloadAmount, int listPos)
         {
             if(ammo.currentAmmo + reloadAmount > equippedGun.capacity)
             {
@@ -215,7 +215,7 @@ namespace Player
                 ammoManagement.HandleDepleteAmmo(ammo, listPos, ref reloadAmount);
                 return false;
             }
-        }
+        }*/
 
 
 

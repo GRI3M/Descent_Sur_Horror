@@ -5,7 +5,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class EquippedWeapon : MonoBehaviour
     {
-        public GunSO gunSO;
+        [SerializeField] public GunSO gunSO;
             
 
         [Header("Plugins")]

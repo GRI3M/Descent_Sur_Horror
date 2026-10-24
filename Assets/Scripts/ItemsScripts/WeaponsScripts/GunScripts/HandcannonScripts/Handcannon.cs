@@ -13,10 +13,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.HandcannonScript
 
         public int handcannonType;
 
-        Handcannon()
-        {
-            gunType = (int) GunTypes.Handcannon;
-        }
+
     }
     
 }
