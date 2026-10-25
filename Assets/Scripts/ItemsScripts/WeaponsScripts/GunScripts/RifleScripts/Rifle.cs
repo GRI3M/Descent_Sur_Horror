@@ -13,7 +13,5 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
         }
 
         public int rifleType;
-
-
     }
 }

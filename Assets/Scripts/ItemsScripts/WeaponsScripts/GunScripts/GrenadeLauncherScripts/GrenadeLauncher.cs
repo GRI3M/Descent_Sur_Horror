@@ -11,8 +11,5 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
         }
 
         public int grenadeLauncherType;
-
-
-    }
-    
+    }    
 }

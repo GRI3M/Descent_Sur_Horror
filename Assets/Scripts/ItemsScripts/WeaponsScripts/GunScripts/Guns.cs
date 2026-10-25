@@ -33,7 +33,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 
 
                 EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
-                enemyHealth?.TakeDamage(gunSO.gunType);
+                enemyHealth?.TakeDamage(gunSO.weaponDamage);
             }
             
         }

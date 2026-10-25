@@ -37,13 +37,13 @@ namespace ItemScripts.WeaponScripts.GunScripts
         {
             if(!starterAssetsInputs.shoot) return;
 
-            if(timeSinceLastShot > gunSO.fireRate)
+            if(timeSinceLastShot >= gunSO.fireRate)
             {
                 equippedGun.Shoot(gunSO);
                 gunAnimator.Play(SHOOT_STR, 0, 0f);
                 timeSinceLastShot = 0f;
-            }            
-            starterAssetsInputs.ShootInput(false);
+            }
+            if(!gunSO.automatic) starterAssetsInputs.ShootInput(false);
         }
 
     }
