@@ -13,6 +13,10 @@ namespace ItemScripts.WeaponScripts.GunScripts
         public float fireRate;
         public bool automatic = false;
         public int gunType;
+        public bool CanZoom;
+        public float ZoomAmount;
+        public float standardSensitivity = 1;
+        public float zoomSensitivity;
         public float accuracy;
         public float accuracyUnscoped;
 

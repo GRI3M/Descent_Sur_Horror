@@ -12,16 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab759b7b6d97f946868c44bb25e6279, type: 3}
   m_Name: Lightweight
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.SniperScripts.SniperSO
+  itemName: Lightweight
+  itemType: 3
+  equipable: 1
+  movementSpeedModifier: 0
+  weaponPrefab: {fileID: 1236140443759337374, guid: c0234a58e5624c844a84606f831895ea, type: 3}
   weaponType: 0
-  weaponDamage: 0
-  capacity: 0
-  currentAmmo: 0
-  reloadSpeed: 0
-  fireRate: 0
+  weaponDamage: 73
+  critModifer: 4
+  capacity: 13
+  currentAmmo: 13
+  reloadSpeed: 4.3
+  fireRate: 1.43
   automatic: 0
   gunType: 3
-  accuracy: 0
-  accuracyUnscoped: 0
-  hitVFX: {fileID: 0}
-  sniperType: 0
-  rechamber: 0
+  CanZoom: 1
+  ZoomAmount: 20
+  standardSensitivity: 1
+  zoomSensitivity: 0.75
+  accuracy: 1
+  accuracyUnscoped: 0.8
+  hitVFX: {fileID: 3935437322874517827, guid: 8557d9197127b3c41af3c90027ffe27d, type: 3}
+  sniperType: 2
+  rechamber: 1

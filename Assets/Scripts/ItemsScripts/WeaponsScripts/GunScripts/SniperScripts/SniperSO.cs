@@ -12,7 +12,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
         {
             base.OnEnable();
             gunType = (int) Guns.GunTypes.Sniper;
-            
+            CanZoom = true;
         }
     }
 }

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab759b7b6d97f946868c44bb25e6279, type: 3}
   m_Name: Barret50Calibur
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.SniperScripts.SniperSO
-  itemName: 
+  itemName: Barret 50 Calibur
   itemType: 3
   equipable: 1
   movementSpeedModifier: 0
+  weaponPrefab: {fileID: 0}
   weaponType: 0
   weaponDamage: 0
   critModifer: 0
@@ -25,6 +26,7 @@ MonoBehaviour:
   fireRate: 0
   automatic: 0
   gunType: 3
+  CanZoom: 1
   accuracy: 0
   accuracyUnscoped: 0
   hitVFX: {fileID: 0}

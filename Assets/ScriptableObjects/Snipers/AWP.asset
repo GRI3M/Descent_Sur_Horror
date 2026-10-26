@@ -12,14 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab759b7b6d97f946868c44bb25e6279, type: 3}
   m_Name: AWP
   m_EditorClassIdentifier: Assembly-CSharp::SniperSO
-  capacity: 0
-  currentAmmo: 0
-  reloadSpeed: 0
-  fireRate: 0
+  itemName: 
+  itemType: 3
+  equipable: 1
+  movementSpeedModifier: 0
+  weaponPrefab: {fileID: 0}
+  weaponType: 0
+  weaponDamage: 0
+  critModifer: 0
+  capacity: 5
+  currentAmmo: 5
+  reloadSpeed: 3.5
+  fireRate: 2.35
   automatic: 0
   gunType: 3
-  accuracy: 0
-  accuracyUnscoped: 0
+  CanZoom: 1
+  accuracy: 1
+  accuracyUnscoped: 0.35
   hitVFX: {fileID: 0}
-  sniperType: 0
-  rechamber: 0
+  sniperType: 3
+  rechamber: 1
