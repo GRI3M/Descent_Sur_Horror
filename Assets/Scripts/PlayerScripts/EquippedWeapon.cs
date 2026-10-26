@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using Unity.VisualScripting;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
@@ -46,5 +47,17 @@ namespace ItemScripts.WeaponScripts.GunScripts
             if(!gunSO.automatic) starterAssetsInputs.ShootInput(false);
         }
 
+        public void SwitchWeapon(WeaponSO weaponSO)
+        {
+            if(equippedGun) Destroy(equippedGun.gameObject);
+            
+            if(weaponSO.weaponType == (int) Weapons.WeaponTypes.Gun) 
+            {
+                Guns newGun = Instantiate(weaponSO.weaponPrefab, transform).GetComponent<Guns>();
+                equippedGun = newGun;
+                gunSO = (GunSO) weaponSO;
+                
+            }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
+        }
     }
 }

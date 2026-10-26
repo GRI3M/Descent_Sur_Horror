@@ -16,8 +16,9 @@ MonoBehaviour:
   itemType: 3
   equipable: 1
   movementSpeedModifier: 0
+  weaponPrefab: {fileID: 5225918316565844277, guid: dc8adb2b6e291614a9876a2749d76065, type: 3}
   weaponType: 0
-  weaponDamage: 0
+  weaponDamage: 22
   critModifer: 0
   capacity: 15
   currentAmmo: 15

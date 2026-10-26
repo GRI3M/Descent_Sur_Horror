@@ -8,6 +8,7 @@ namespace ItemScripts.WeaponScripts
     public class WeaponSO : ItemSO
     {
         [Header("Weapon Attributes")]
+        public GameObject weaponPrefab;
         public int weaponType;
         public float weaponDamage;
         public float critModifer;
