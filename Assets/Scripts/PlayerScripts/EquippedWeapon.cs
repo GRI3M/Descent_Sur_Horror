@@ -52,6 +52,8 @@ namespace ItemScripts.WeaponScripts.GunScripts
         {
             currentAmmo += amount;
 
+            if(currentAmmo > currentGunSO.capacity) currentAmmo = currentGunSO.capacity;
+
             ammo_text.text = currentAmmo.ToString("D2");
         }
 
@@ -60,16 +62,15 @@ namespace ItemScripts.WeaponScripts.GunScripts
             timeSinceLastShot += Time.deltaTime;
 
             if(!starterAssetsInputs.shoot) return;
-            if(currentAmmo > 0)
+
+            if(timeSinceLastShot >= currentGunSO.fireRate && currentAmmo > 0)
             {
-                if(timeSinceLastShot >= currentGunSO.fireRate)
-                {
-                    equippedGun.Shoot(currentGunSO);
-                    gunAnimator.Play(SHOOT_STR, 0, 0f);
-                    timeSinceLastShot = 0f;
-                    UpdateAmmo(-1);
-                }
+                equippedGun.Shoot(currentGunSO);
+                gunAnimator.Play(SHOOT_STR, 0, 0f);
+                timeSinceLastShot = 0f;
+                UpdateAmmo(-1);
             }
+            
             if(!currentGunSO.automatic) starterAssetsInputs.ShootInput(false);
         }
 
@@ -83,7 +84,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 equippedGun = newGun;
                 currentGunSO = (GunSO) weaponSO;
                 fps.ChangeRotationSpeed(currentGunSO.standardSensitivity); 
-                UpdateAmmo(currentAmmo);
+                UpdateAmmo(currentGunSO.capacity);
 
             }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
         }
