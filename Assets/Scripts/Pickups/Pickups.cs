@@ -3,10 +3,9 @@ using ItemScripts.WeaponScripts.GunScripts;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Pickups : MonoBehaviour
+public abstract class Pickups : MonoBehaviour
 {
-    [SerializeField] WeaponSO weaponSO;
-
+    
     const string PLAYER_STRING = "Player";
 
     void OnTriggerEnter(Collider other)
@@ -14,8 +13,9 @@ public class Pickups : MonoBehaviour
         if (other.CompareTag(PLAYER_STRING))
         {
             EquippedWeapon equippedWeapon = other.GetComponentInChildren<EquippedWeapon>();
-            equippedWeapon.SwitchWeapon(weaponSO);
+            OnPickUp(equippedWeapon);
             Destroy(this.gameObject);
         }
     }
+    protected abstract void OnPickUp(EquippedWeapon equippedWeapon);
 }

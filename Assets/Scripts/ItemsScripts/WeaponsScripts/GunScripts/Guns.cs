@@ -1,6 +1,7 @@
 using UnityEngine;
 using StarterAssets;
-using Enemy; 
+using Enemy;
+using Unity.VisualScripting;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
@@ -18,6 +19,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         }
 
         [SerializeField] public ParticleSystem muzzleFlash;
+        [SerializeField] public LayerMask layerMask;
 
         public void Shoot(GunSO gunSO)
         {
@@ -27,7 +29,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
             
             RaycastHit hit;
 
-            if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+            if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Ignore))
             {
                 Instantiate(gunSO.hitVFX, hit.point, Quaternion.identity);
                 

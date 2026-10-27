@@ -2,12 +2,15 @@ using UnityEngine;
 using StarterAssets;
 using Unity.VisualScripting;
 using Unity.Cinemachine;
+using TMPro;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class EquippedWeapon : MonoBehaviour
     {
-        [SerializeField] public GunSO gunSO;
+        [SerializeField] public GunSO startingGunSO;
+
+        GunSO currentGunSO;
         
         float defaultZoom;
         public GameObject weaponModel;
@@ -19,14 +22,16 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public CinemachineVirtualCamera playerCamera;
 
         [SerializeField] public GameObject scopeVignette;
+        [SerializeField] public TMP_Text ammo_text;
         FirstPersonController fps;
         Guns equippedGun;
         const string SHOOT_STR = "ShootWeapon"; 
         float timeSinceLastShot = 0f;
+        int currentAmmo;
 
         void Start()
         {
-            equippedGun = GetComponentInChildren<Guns>();
+            SwitchWeapon(startingGunSO);
         }
 
         void Awake()
@@ -35,7 +40,6 @@ namespace ItemScripts.WeaponScripts.GunScripts
             gunAnimator = GetComponent<Animator>();
             defaultZoom = playerCamera.m_Lens.FieldOfView;
             fps = GetComponentInParent<FirstPersonController>();
-            fps.ChangeRotationSpeed(gunSO.standardSensitivity);
         }
 
         void Update()
@@ -44,19 +48,29 @@ namespace ItemScripts.WeaponScripts.GunScripts
             HandleZoom();
         }
 
+        public void UpdateAmmo(int amount)
+        {
+            currentAmmo += amount;
+
+            ammo_text.text = currentAmmo.ToString("D2");
+        }
+
         void HandleShoot()
         {
             timeSinceLastShot += Time.deltaTime;
 
             if(!starterAssetsInputs.shoot) return;
-
-            if(timeSinceLastShot >= gunSO.fireRate)
+            if(currentAmmo > 0)
             {
-                equippedGun.Shoot(gunSO);
-                gunAnimator.Play(SHOOT_STR, 0, 0f);
-                timeSinceLastShot = 0f;
+                if(timeSinceLastShot >= currentGunSO.fireRate)
+                {
+                    equippedGun.Shoot(currentGunSO);
+                    gunAnimator.Play(SHOOT_STR, 0, 0f);
+                    timeSinceLastShot = 0f;
+                    UpdateAmmo(-1);
+                }
             }
-            if(!gunSO.automatic) starterAssetsInputs.ShootInput(false);
+            if(!currentGunSO.automatic) starterAssetsInputs.ShootInput(false);
         }
 
         public void SwitchWeapon(WeaponSO weaponSO)
@@ -67,26 +81,28 @@ namespace ItemScripts.WeaponScripts.GunScripts
             {
                 Guns newGun = Instantiate(weaponSO.weaponPrefab, transform).GetComponent<Guns>();
                 equippedGun = newGun;
-                gunSO = (GunSO) weaponSO;
-                fps.ChangeRotationSpeed(gunSO.standardSensitivity); 
+                currentGunSO = (GunSO) weaponSO;
+                fps.ChangeRotationSpeed(currentGunSO.standardSensitivity); 
+                UpdateAmmo(currentAmmo);
+
             }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
         }
 
         public void HandleZoom()
         {
-            if(!gunSO.CanZoom) return;
+            if(!currentGunSO.CanZoom) return;
 
             if (starterAssetsInputs.zoom)
             {
-                playerCamera.m_Lens.FieldOfView = gunSO.ZoomAmount;
+                playerCamera.m_Lens.FieldOfView = currentGunSO.ZoomAmount;
                 scopeVignette.SetActive(true);
-                fps.ChangeRotationSpeed(gunSO.zoomSensitivity);
+                fps.ChangeRotationSpeed(currentGunSO.zoomSensitivity);
             }
             else
             {
                 playerCamera.m_Lens.FieldOfView = defaultZoom;
                 scopeVignette.SetActive(false);
-                fps.ChangeRotationSpeed(gunSO.standardSensitivity);
+                fps.ChangeRotationSpeed(currentGunSO.standardSensitivity);
             }
         }
     }

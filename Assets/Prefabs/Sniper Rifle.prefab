@@ -4917,6 +4917,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.SniperScripts.Sniper
   muzzleFlash: {fileID: 5586761774050911978}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &6052437783543469819
 GameObject:
   m_ObjectHideFlags: 0
