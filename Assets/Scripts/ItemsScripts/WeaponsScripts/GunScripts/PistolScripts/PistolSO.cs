@@ -8,6 +8,8 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
         [Header("Pistol Attributes")]
         public int pistolType;
 
+        public PistolUpgradeSO pistolUpgradeSO;
+
         protected override void OnEnable() 
         {
             base.OnEnable();

@@ -14,5 +14,6 @@ namespace ItemScripts.WeaponScripts
         }
 
         public GameObject weaponModel;
+
     }
 }
