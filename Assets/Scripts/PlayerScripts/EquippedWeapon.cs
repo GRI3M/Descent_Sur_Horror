@@ -40,6 +40,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
             gunAnimator = GetComponent<Animator>();
             defaultZoom = playerCamera.m_Lens.FieldOfView;
             fps = GetComponentInParent<FirstPersonController>();
+            
         }
 
         void Update()
@@ -53,6 +54,8 @@ namespace ItemScripts.WeaponScripts.GunScripts
             currentAmmo += amount;
 
             if(currentAmmo > currentGunSO.capacity) currentAmmo = currentGunSO.capacity;
+
+            equippedGun.ammoCount = currentAmmo;
 
             ammo_text.text = currentAmmo.ToString("D2");
         }
@@ -85,7 +88,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 currentGunSO = (GunSO) weaponSO;
                 fps.ChangeRotationSpeed(currentGunSO.standardSensitivity); 
                 UpdateAmmo(currentGunSO.capacity);
-
+                this.weaponModel = newGun.weaponModel;
             }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
         }
 
@@ -98,12 +101,14 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 playerCamera.m_Lens.FieldOfView = currentGunSO.ZoomAmount;
                 scopeVignette.SetActive(true);
                 fps.ChangeRotationSpeed(currentGunSO.zoomSensitivity);
+                weaponModel.SetActive(false);
             }
             else
             {
                 playerCamera.m_Lens.FieldOfView = defaultZoom;
                 scopeVignette.SetActive(false);
                 fps.ChangeRotationSpeed(currentGunSO.standardSensitivity);
+                weaponModel.SetActive(true);
             }
         }
     }

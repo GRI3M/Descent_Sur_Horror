@@ -13,6 +13,6 @@ namespace ItemScripts.WeaponScripts
             Melee,
         }
 
-
+        public GameObject weaponModel;
     }
 }

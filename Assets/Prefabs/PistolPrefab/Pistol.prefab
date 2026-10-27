@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 526853510364662582}
   - component: {fileID: 3521843412892058771}
   - component: {fileID: 1658712956322181209}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Pistol_02_Blue_Team
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 8926024441639676252}
   - component: {fileID: 4551844743834195927}
   - component: {fileID: 5166343205280665038}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: FX_Fireworks_Green_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4937,7 +4937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7253017743694572867}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4970,7 +4970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7356241761191489964}
   - component: {fileID: 7258330795749105925}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4985,7 +4985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5225918316565844277}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.04957807, z: -0, w: 0.9987703}
+  m_LocalRotation: {x: 0, y: -0.049581986, z: 0, w: 0.99877006}
   m_LocalPosition: {x: 0.05499983, y: 0, z: -0.061999798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5006,6 +5006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2655f099555ebaf458aaba0ec42901d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.PistolScripts.Pistol
+  model: {fileID: 3965362836958415775}
   muzzleFlash: {fileID: 4551844743834195927}
   layerMask:
     serializedVersion: 2
@@ -5021,7 +5022,7 @@ GameObject:
   - component: {fileID: 5991061593684734648}
   - component: {fileID: 8774083709221693654}
   - component: {fileID: 5662184161290656974}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: 'FX_Fireworks_Blue_Small '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

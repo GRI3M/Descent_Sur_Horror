@@ -18,6 +18,8 @@ namespace ItemScripts.WeaponScripts.GunScripts
             GrenadeLauncher,
         }
 
+
+        [SerializeField] public int ammoCount;
         [SerializeField] public ParticleSystem muzzleFlash;
         [SerializeField] public LayerMask layerMask;
 
