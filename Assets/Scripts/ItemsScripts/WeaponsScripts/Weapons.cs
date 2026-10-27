@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace ItemScripts.WeaponScripts
             Melee,
         }
 
-        public GameObject weaponModel;
+        [SerializeField] public MeshRenderer weaponModel;
 
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using StarterAssets;
 using Enemy;
 using Unity.VisualScripting;
+using Unity.Cinemachine;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
@@ -22,12 +23,15 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public int ammoCount;
         [SerializeField] public ParticleSystem muzzleFlash;
         [SerializeField] public LayerMask layerMask;
+        [SerializeField] public CinemachineImpulseSource impulseSource;
+
 
         public void Shoot(GunSO gunSO)
         {
             
 
             muzzleFlash.Play();
+            impulseSource.GenerateImpulse();
             
             RaycastHit hit;
 

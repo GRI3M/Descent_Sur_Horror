@@ -8,26 +8,29 @@ namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class EquippedWeapon : MonoBehaviour
     {
-        [SerializeField] public GunSO startingGunSO;
-
-        GunSO currentGunSO;
-        
-        float defaultZoom;
-        public GameObject weaponModel;
 
         [Header("Plugins")]
         
+        [SerializeField] public GunSO startingGunSO;
         [SerializeField] public Animator gunAnimator;
         StarterAssetsInputs starterAssetsInputs;
         [SerializeField] public CinemachineVirtualCamera playerCamera;
-
         [SerializeField] public GameObject scopeVignette;
         [SerializeField] public TMP_Text ammo_text;
         FirstPersonController fps;
+
+        [Header("Currently Equipped Weapon")]
         Guns equippedGun;
-        const string SHOOT_STR = "ShootWeapon"; 
+        GunSO currentGunSO;
+        public MeshRenderer weaponModel;
+
+        [Header("Weapon Values")]
         float timeSinceLastShot = 0f;
         int currentAmmo;
+        float defaultZoom;
+
+        [Header("Constants")]
+        const string SHOOT_STR = "ShootWeapon"; 
 
         void Start()
         {
@@ -101,14 +104,14 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 playerCamera.m_Lens.FieldOfView = currentGunSO.ZoomAmount;
                 scopeVignette.SetActive(true);
                 fps.ChangeRotationSpeed(currentGunSO.zoomSensitivity);
-                weaponModel.SetActive(false);
+                weaponModel.enabled = false;
             }
             else
             {
                 playerCamera.m_Lens.FieldOfView = defaultZoom;
                 scopeVignette.SetActive(false);
                 fps.ChangeRotationSpeed(currentGunSO.standardSensitivity);
-                weaponModel.SetActive(true);
+                weaponModel.enabled = true;
             }
         }
     }

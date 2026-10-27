@@ -4879,6 +4879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590265523463147990}
   - component: {fileID: 2208860485330124610}
+  - component: {fileID: -4658725876170260615}
   m_Layer: 7
   m_Name: Machine Gun
   m_TagString: Untagged
@@ -4915,11 +4916,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cbff7b35474aa4390cf649a91d1212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.RifleScripts.Rifle
+  weaponModel: {fileID: 0}
+  ammoCount: 0
   muzzleFlash: {fileID: 6434152748367261660}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  impulseSource: {fileID: -4658725876170260615}
   rifleType: 0
+--- !u!114 &-4658725876170260615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283057821047288428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 1
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -0.2, z: 0}
 --- !u!1 &8225009848414208489
 GameObject:
   m_ObjectHideFlags: 0
