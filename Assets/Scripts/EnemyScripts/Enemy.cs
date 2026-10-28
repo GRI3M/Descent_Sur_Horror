@@ -11,6 +11,8 @@ namespace Enemy
         FirstPersonController player;
         private NavMeshAgent agent;
 
+        const string PLAYER_STR = "Player";
+
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -25,10 +27,19 @@ namespace Enemy
         // Update is called once per frame
         void Update()
         {
+            if(!player) return;
             agent.SetDestination(player.transform.position);
         }
 
-        
+        void OnTriggerEnter(Collider other)
+        {
+            if(other.tag == PLAYER_STR)
+            {
+                EnemyHealthManager enemyHealth = GetComponent<EnemyHealthManager>();
+                enemyHealth.SelfDestruct();
+            }
+        }
+
     }
     
 }

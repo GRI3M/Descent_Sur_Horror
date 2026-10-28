@@ -23,7 +23,7 @@ MonoBehaviour:
   capacity: 30
   currentAmmo: 30
   reloadSpeed: 2.6
-  fireRate: 0.2
+  fireRate: 0.1
   automatic: 1
   gunType: 2
   CanZoom: 0

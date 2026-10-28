@@ -68,11 +68,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.EquippedWeapon
   startingGunSO: {fileID: 11400000, guid: 598ffd4ec9bffa64daf5c95c32d1cde7, type: 2}
-  weaponModel: {fileID: 0}
   gunAnimator: {fileID: 5353166777851287901}
   playerCamera: {fileID: 0}
   scopeVignette: {fileID: 0}
   ammo_text: {fileID: 0}
+  weaponModel: {fileID: 0}
 --- !u!1 &4048588390027754137
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 8616685848737228376}
+  - component: {fileID: 391851242668623678}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -585,3 +586,16 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &391851242668623678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d9ede015f514f47a0664edab7d3014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  Basehealth: 100

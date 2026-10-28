@@ -5,6 +5,7 @@ namespace Enemy
     public class EnemyHealthManager : MonoBehaviour
     {
         [SerializeField] public float Basehealth = 100f;
+        [SerializeField] public GameObject criminalExplosion;
 
         float currentHealth;
 
@@ -16,7 +17,16 @@ namespace Enemy
         {
             currentHealth -= damageAmount;
 
-            if(currentHealth <= 0) Destroy(this.gameObject);
+            if(currentHealth <= 0)
+            {
+                SelfDestruct();
+            }
+        }
+
+        public void SelfDestruct()
+        {
+            Instantiate(criminalExplosion, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
     }
     
