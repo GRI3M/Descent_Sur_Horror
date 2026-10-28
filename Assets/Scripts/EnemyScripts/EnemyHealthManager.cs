@@ -1,3 +1,4 @@
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace Enemy
@@ -6,6 +7,7 @@ namespace Enemy
     {
         [SerializeField] public float Basehealth = 100f;
         [SerializeField] public GameObject criminalExplosion;
+        bool isDestructing;
 
         float currentHealth;
 
@@ -25,6 +27,9 @@ namespace Enemy
 
         public void SelfDestruct()
         {
+            if(isDestructing) return;
+            isDestructing = true;
+
             Instantiate(criminalExplosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
