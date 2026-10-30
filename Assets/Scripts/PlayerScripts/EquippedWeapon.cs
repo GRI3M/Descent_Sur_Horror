@@ -90,6 +90,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 equippedGun = newGun;
                 currentGunSO = (GunSO) weaponSO;
                 fps.ChangeRotationSpeed(currentGunSO.standardSensitivity); 
+                starterAssetsInputs.zoom = false;
                 UpdateAmmo(currentGunSO.capacity);
                 this.weaponModel = newGun.weaponModel;
             }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
