@@ -68,5 +68,8 @@
         "*.slnx": "*.csproj"
     },
     "dotnet.defaultSolution": "Descent_Sur_Horror.slnx",
-    "dotnet.enableWorkspaceBasedDevelopment": false
+    "dotnet.enableWorkspaceBasedDevelopment": false,
+    "github.copilot.enable": {
+        "*": false
+    }
 }
