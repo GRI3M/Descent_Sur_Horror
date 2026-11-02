@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+///Another custom version of script that is already done by Unity.
+/// If this script and the inputhandler script go unused, might delete.
 
 namespace Player
 {

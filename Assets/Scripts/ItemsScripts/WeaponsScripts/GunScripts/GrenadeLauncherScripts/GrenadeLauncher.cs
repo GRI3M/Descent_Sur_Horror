@@ -9,7 +9,5 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
             SingleShot,
             RevolvingBarrels,
         }
-
-        public int grenadeLauncherType;
     }    
 }

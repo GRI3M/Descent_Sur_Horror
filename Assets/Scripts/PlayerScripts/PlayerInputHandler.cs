@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+///Custom version of an input system. This will probably not get used since
+/// the Unity provided one works just as well with few modifications needed.
 
 namespace Player
 {

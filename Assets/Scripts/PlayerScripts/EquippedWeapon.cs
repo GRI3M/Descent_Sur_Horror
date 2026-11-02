@@ -52,6 +52,10 @@ namespace ItemScripts.WeaponScripts.GunScripts
             HandleZoom();
         }
 
+        /// <summary>
+        /// Updates the amount of ammo in a weapon.
+        /// </summary>
+        /// <param name="amount">Ammo being used/replenished</param>
         public void UpdateAmmo(int amount)
         {
             currentAmmo += amount;
@@ -63,6 +67,9 @@ namespace ItemScripts.WeaponScripts.GunScripts
             ammo_text.text = currentAmmo.ToString("D2");
         }
 
+        /// <summary>
+        /// Handles the weapon firing.
+        /// </summary>
         void HandleShoot()
         {
             timeSinceLastShot += Time.deltaTime;
@@ -80,6 +87,11 @@ namespace ItemScripts.WeaponScripts.GunScripts
             if(!currentGunSO.automatic) starterAssetsInputs.ShootInput(false);
         }
 
+
+        /// <summary>
+        /// Handles switching from one weapon to the next.
+        /// </summary>
+        /// <param name="weaponSO">Weapon being switched to.</param>
         public void SwitchWeapon(WeaponSO weaponSO)
         {
             if(equippedGun) Destroy(equippedGun.gameObject);
@@ -96,7 +108,12 @@ namespace ItemScripts.WeaponScripts.GunScripts
             }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
         }
 
-        public void HandleZoom()
+        /// <summary>
+        /// Handles a weapon zooming in and out, if equipped gun has a sniper zoom.
+        /// Might update this to slow the player down if they are zooming in with a 
+        /// heavier sniper rifle.
+        /// </summary>
+        void HandleZoom()
         {
             if(!currentGunSO.CanZoom) return;
 

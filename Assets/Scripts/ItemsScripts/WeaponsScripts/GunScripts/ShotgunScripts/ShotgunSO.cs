@@ -7,6 +7,9 @@ namespace ItemScripts.WeaponScripts.GunScripts.ShotgunScripts
         [Header("Shotgun Attributes")]
         public int shotgunType;
 
+        /// <summary>
+        /// Automatically assign gun type
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();

@@ -7,7 +7,10 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
     {
         [Header("Grenade Launcher Attributes")]
         public int grenadeLauncherType;
-
+        
+        /// <summary>
+        /// Automatically assign gun type
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();

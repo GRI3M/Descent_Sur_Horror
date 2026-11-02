@@ -3,6 +3,10 @@ using ItemScripts.AmmoManagementScript;
 
 namespace ItemScripts.AmmoScript
 {
+    ///This script might get reduced to remove ammoName, ammoType and drop amount
+    /// so that these values can be replaced by SO scripts;
+
+
     /// <summary>
     /// Generic Ammo Brick class that is inhereted by every ammo type
     /// </summary>

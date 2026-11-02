@@ -11,7 +11,5 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
             M4,
             AK47,
         }
-
-        public int rifleType;
     }
 }

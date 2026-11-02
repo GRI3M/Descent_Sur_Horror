@@ -10,10 +10,5 @@ namespace ItemScripts.WeaponScripts.GunScripts.HandcannonScript
             Deagle,
             OldWestern,
         }
-
-        public int handcannonType;
-
-
     }
-    
 }

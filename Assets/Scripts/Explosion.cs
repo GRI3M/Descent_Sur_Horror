@@ -4,6 +4,7 @@ using Enemy;
 
 public class Explosion : MonoBehaviour
 {
+    [Header("Damage Values")]
     [SerializeField] float range = 1.5f;
     [SerializeField] float damage = 55f;
 
@@ -13,12 +14,18 @@ public class Explosion : MonoBehaviour
         ExplodeEnemies();
     }
 
+    /// <summary>
+    /// Creates Gizmo references to show the explosion range
+    /// </summary>
     void OnDrawGizmos()
     {
         Gizmos.color = Color.orangeRed;
         Gizmos.DrawWireSphere(transform.position,range);
     }
 
+    /// <summary>
+    /// Finds hit colliders of all enemy type creatures and deals damage to them individually
+    /// </summary>
     void ExplodeEnemies()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
@@ -35,6 +42,11 @@ public class Explosion : MonoBehaviour
             
     }
 
+    /// <summary>
+    /// Finds the player hitbox and deals damage to it and then leaves players alone.
+    /// Might need to change this if it needs to fit for multiplayer, but it will probably match
+    /// Enemy script above.
+    /// </summary>
     void ExplodePlayer()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);

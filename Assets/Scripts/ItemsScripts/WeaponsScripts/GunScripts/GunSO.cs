@@ -20,8 +20,12 @@ namespace ItemScripts.WeaponScripts.GunScripts
         public float accuracy;
         public float accuracyUnscoped;
 
+        [Header("Pluggins")]
         public GameObject hitVFX;
 
+        /// <summary>
+        /// Sets values inherited by the gun class.
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();

@@ -5,11 +5,17 @@ namespace Enemy
 {
     public class EnemyHealthManager : MonoBehaviour
     {
+        [Header("Enemy Health Values")]
         [SerializeField] public float Basehealth = 100f;
+        float currentHealth;
+        
+        [Header("Pluggins")]
         [SerializeField] public GameObject criminalExplosion;
+
+        [Header("Enemy Values")]
         bool isDestructing;
 
-        float currentHealth;
+
 
         void Awake()
         {

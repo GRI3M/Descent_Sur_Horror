@@ -13,6 +13,9 @@ namespace ItemScripts.WeaponScripts
         public float weaponDamage;
         public float critModifer;
 
+        /// <summary>
+        /// Sets values inherited by the item class.
+        /// </summary>
         protected virtual void OnEnable()
         {
             itemType = (int) Items.ItemTypes.Weapon;

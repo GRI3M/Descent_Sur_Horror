@@ -8,6 +8,9 @@ namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class Guns : Weapons
     {
+        /// <summary>
+        /// Types of guns
+        /// </summary>
         public enum GunTypes
         {
             Pistol,
@@ -19,13 +22,18 @@ namespace ItemScripts.WeaponScripts.GunScripts
             GrenadeLauncher,
         }
 
-
+        [Header("Gun values")]
         [SerializeField] public int ammoCount;
+        
+        [Header("Pluggins")]
         [SerializeField] public ParticleSystem muzzleFlash;
         [SerializeField] public LayerMask layerMask;
         [SerializeField] public CinemachineImpulseSource impulseSource;
 
-
+        /// <summary>
+        /// Handles shooting gun
+        /// </summary>
+        /// <param name="gunSO">The weapon that is shooting</param>
         public void Shoot(GunSO gunSO)
         {
             
@@ -35,6 +43,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
             
             RaycastHit hit;
 
+            //Replace mathf Infinity with GunSO range variable.
             if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Ignore))
             {
                 Instantiate(gunSO.hitVFX, hit.point, Quaternion.identity);

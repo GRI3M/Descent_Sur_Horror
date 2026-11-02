@@ -8,6 +8,9 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
         [Header("Rifle Attributes")]
         public int rifleType;
 
+        /// <summary>
+        /// Automatically assign gun type
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();

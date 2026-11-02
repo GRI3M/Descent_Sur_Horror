@@ -12,9 +12,5 @@ namespace ItemScripts.WeaponScripts.GunScripts.ShotgunScripts
             Assult,
             SawedOff,
         }
-
-        public int ShotgunType;
-
     }
-    
 }

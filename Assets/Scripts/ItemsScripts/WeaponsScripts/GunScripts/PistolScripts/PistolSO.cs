@@ -8,8 +8,12 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
         [Header("Pistol Attributes")]
         public int pistolType;
 
+        //This might be removed and replaced with basic script.
         public PistolUpgradeSO pistolUpgradeSO;
 
+        /// <summary>
+        /// Automatically assign gun type
+        /// </summary>
         protected override void OnEnable() 
         {
             base.OnEnable();

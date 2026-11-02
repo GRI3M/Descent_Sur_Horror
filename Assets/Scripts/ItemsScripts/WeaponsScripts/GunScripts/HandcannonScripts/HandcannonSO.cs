@@ -7,6 +7,9 @@ namespace ItemScripts.WeaponScripts.GunScripts.HandcannonScript
     {
         public int handcannonType;
 
+        /// <summary>
+        /// Automatically assign gun type
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();

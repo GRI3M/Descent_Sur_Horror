@@ -8,6 +8,9 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
         public int sniperType;
         public bool rechamber;
 
+        /// <summary>
+        /// Automatically assign sniper values
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();

@@ -8,9 +8,12 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        FirstPersonController player;
-        private NavMeshAgent agent;
 
+        [Header("Pluggins")]
+        FirstPersonController player;
+        NavMeshAgent agent;
+
+        [Header("Constant Variables")]
         const string PLAYER_STR = "Player";
 
         void Awake()

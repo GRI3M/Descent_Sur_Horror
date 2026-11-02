@@ -6,16 +6,14 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Values")]
     [Range(1f,100f)][SerializeField] public float Basehealth = 100f;
-    
+    float currentHealth;
+    int gameOverCamPriority = 20;
+
     [Header("Pluggins")]
     [SerializeField] public CinemachineCamera deathCamera;
     [SerializeField] public Transform weaponsCamera;
     [SerializeField] public GameObject canvas;
     [SerializeField] public Image[] healthBar;
-
-    //Private values
-    float currentHealth;
-    int gameOverCamPriority = 20;
 
     void Awake()
     {

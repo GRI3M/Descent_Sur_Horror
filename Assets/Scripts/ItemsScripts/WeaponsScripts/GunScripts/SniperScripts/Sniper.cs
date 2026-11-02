@@ -11,7 +11,6 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
             FastTrigger,
             Barret50Calibur,
             AWP,
-        }
-                
+        }         
     }
 }
