@@ -49,7 +49,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
                 Instantiate(gunSO.hitVFX, hit.point, Quaternion.identity);
                 
 
-                EnemyHealthManager enemyHealth = hit.collider.GetComponent<EnemyHealthManager>();
+                EnemyHealthManager enemyHealth = hit.collider.GetComponentInParent<EnemyHealthManager>();
                 enemyHealth?.TakeDamage(gunSO.weaponDamage);
             }
             
