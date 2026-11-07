@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class Turret : MonoBehaviour
 
     [Header("Turret Values")]
     [SerializeField] float turretShotCharge = 2f;
+    [SerializeField] float projectileDamage = 33f;
+    [SerializeField] float projectileSpeed = 14f;
 
 
 
@@ -38,7 +41,9 @@ public class Turret : MonoBehaviour
         while (playerHealth)
         {
             yield return new WaitForSeconds(turretShotCharge);
-            Instantiate(turretShot, turretShotSpawn.position, turret.rotation);
+            Projectile newProjectile = Instantiate(turretShot, turretShotSpawn.position, Quaternion.identity).GetComponent<Projectile>();
+            newProjectile.transform.LookAt(playerTransform);
+            newProjectile.Init(projectileDamage, projectileSpeed);
         }
     }
 }

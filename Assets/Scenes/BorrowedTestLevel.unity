@@ -595968,6 +595968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 3091956838112123343, guid: 8180d5c46f560eb4d867d56f7317c4ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.077
+      objectReference: {fileID: 0}
     - target: {fileID: 7945445990649344943, guid: 8180d5c46f560eb4d867d56f7317c4ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.900917
@@ -596016,6 +596020,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1212900639}
+    - target: {fileID: 8493563221625396832, guid: 8180d5c46f560eb4d867d56f7317c4ee, type: 3}
+      propertyPath: projectileSpeed
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 8493563221625396832, guid: 8180d5c46f560eb4d867d56f7317c4ee, type: 3}
       propertyPath: turretShotSpawn
       value: 
