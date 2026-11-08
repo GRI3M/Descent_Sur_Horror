@@ -12,9 +12,11 @@ public class PlayerHealth : MonoBehaviour
     [Header("Pluggins")]
     [SerializeField] public CinemachineCamera deathCamera;
     [SerializeField] public Transform weaponsCamera;
-    [SerializeField] public GameObject canvas;
     [SerializeField] public Image[] healthBar;
 
+    [Header("Player UI")]
+    [SerializeField] public GameObject playerUIContainer;
+    [SerializeField] public GameObject gameOverContainer;
     void Awake()
     {
         currentHealth = Basehealth;
@@ -47,9 +49,15 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= 0)
         {
             SetUpDeathCamera();
-            canvas.SetActive(false);
+            GameOverUIUpdate();
             Destroy(this.gameObject);
         }
+    }
+
+    private void GameOverUIUpdate()
+    {
+        playerUIContainer.SetActive(false);
+        gameOverContainer.SetActive(true);
     }
 
     /// <summary>
