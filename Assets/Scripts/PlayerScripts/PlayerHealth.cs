@@ -1,3 +1,4 @@
+using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,10 +49,17 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            SetUpDeathCamera();
-            GameOverUIUpdate();
-            Destroy(this.gameObject);
+            PlayerGameOver();
         }
+    }
+
+    private void PlayerGameOver()
+    {
+        SetUpDeathCamera();
+        GameOverUIUpdate();
+        StarterAssetsInputs starterAssetsInputs = FindAnyObjectByType<StarterAssetsInputs>();
+        starterAssetsInputs.SetCursorState(false);
+        Destroy(this.gameObject);
     }
 
     private void GameOverUIUpdate()

@@ -41,8 +41,8 @@ public class Turret : MonoBehaviour
         while (playerHealth)
         {
             yield return new WaitForSeconds(turretShotCharge);
-            Projectile newProjectile = Instantiate(turretShot, turretShotSpawn.position, Quaternion.identity).GetComponent<Projectile>();
-            newProjectile.transform.LookAt(playerTransform);
+            Projectile newProjectile = Instantiate(turretShot, turretShotSpawn.position, turret.rotation).GetComponent<Projectile>();
+            //newProjectile.transform.LookAt(playerTransform);
             newProjectile.Init(projectileDamage, projectileSpeed);
         }
     }
