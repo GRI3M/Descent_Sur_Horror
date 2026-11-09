@@ -93,9 +93,9 @@ namespace Player
         {
             for(int i = 0; i < 2; i++)
             {
-                if(inventory[6][i].itemSO.itemType == (int)Items.ItemTypes.Blocked)
+                if(inventory[6][i].itemSO.itemType == ItemTypes.Blocked)
                 {
-                    inventory[6][i].itemSO.itemType = (int)Items.ItemTypes.Empty;
+                    inventory[6][i].itemSO.itemType = ItemTypes.Empty;
                 }
             }
         }
@@ -132,8 +132,8 @@ namespace Player
             {
                 for(int x = 0; x < 3; x++)
                 {
-                    if(inventory[i][x].itemSO.itemType == (int) Items.ItemTypes.Blocked)
-                        inventory[i][x].itemSO.itemType = (int) Items.ItemTypes.Empty;
+                    if(inventory[i][x].itemSO.itemType == ItemTypes.Blocked)
+                        inventory[i][x].itemSO.itemType = ItemTypes.Empty;
                 }
             }
         }
@@ -151,13 +151,13 @@ namespace Player
             int satchelSlots = 6;
             //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(inventory[row][column].itemSO.itemType == (int) Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
+            if(inventory[row][column].itemSO.itemType == ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
 
             //else if(Inventory[row][column].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
 
             else if(
                 //satchelSlots.Contains((int)inventory[row][column].itemSO.itemType) && 
-                inventory[row][column].itemSO.itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
+                inventory[row][column].itemSO.itemType == ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
 
 
             else return (int)InventoryCheckDisplay.SlotCheckError;

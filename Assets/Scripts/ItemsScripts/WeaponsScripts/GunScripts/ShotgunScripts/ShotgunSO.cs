@@ -5,7 +5,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.ShotgunScripts
     public class ShotgunSO : GunSO
     {
         [Header("Shotgun Attributes")]
-        public int shotgunType;
+        public ShotgunTypes shotgunType;
 
         /// <summary>
         /// Automatically assign gun type
@@ -13,7 +13,8 @@ namespace ItemScripts.WeaponScripts.GunScripts.ShotgunScripts
         protected override void OnEnable()
         {
             base.OnEnable();
-            gunType = (int) Guns.GunTypes.Shotgun;
+            gunType = GunTypes.Shotgun;
+            isDualSlot = true;
         }
     }
 }

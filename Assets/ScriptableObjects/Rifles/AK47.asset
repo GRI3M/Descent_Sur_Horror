@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: AK47
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.RifleScripts.RifleSO
   itemName: AK47
+  itemID: 15
   itemType: 3
+  icon: {fileID: 0}
   equipable: 1
+  isStackable: 0
+  isDualSlot: 1
   movementSpeedModifier: 0
   weaponPrefab: {fileID: 5283057821047288428, guid: e51d332b13c4fe24eaa4d60582a31012, type: 3}
   weaponType: 0
   weaponDamage: 34
   critModifer: 3
   capacity: 30
-  currentAmmo: 30
   reloadSpeed: 2.6
   fireRate: 0.1
   automatic: 1

@@ -5,7 +5,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
     public class SniperSO : GunSO
     {
         [Header("Sniper Attributes")]
-        public int sniperType;
+        public SniperTypes sniperType;
         public bool rechamber;
 
         /// <summary>
@@ -14,8 +14,9 @@ namespace ItemScripts.WeaponScripts.GunScripts.SniperScripts
         protected override void OnEnable()
         {
             base.OnEnable();
-            gunType = (int) Guns.GunTypes.Sniper;
+            gunType = GunTypes.Sniper;
             CanZoom = true;
+            isDualSlot = true;
         }
     }
 }

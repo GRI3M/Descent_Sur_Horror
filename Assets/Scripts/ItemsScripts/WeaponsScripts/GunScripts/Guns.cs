@@ -8,20 +8,6 @@ namespace ItemScripts.WeaponScripts.GunScripts
 {
     public class Guns : Weapons
     {
-        /// <summary>
-        /// Types of guns
-        /// </summary>
-        public enum GunTypes
-        {
-            Pistol,
-            Shotgun,
-            Rifle,
-            Sniper,
-            SMG,
-            Handcannon,
-            GrenadeLauncher,
-        }
-
         [Header("Gun values")]
         [SerializeField] public int ammoCount;
         
@@ -54,5 +40,19 @@ namespace ItemScripts.WeaponScripts.GunScripts
             }
             
         }
+    }
+
+    /// <summary>
+    /// Types of guns
+    /// </summary>
+    public enum GunTypes
+    {
+        Pistol,
+        Shotgun,
+        Rifle,
+        Sniper,
+        SMG,
+        Handcannon,
+        GrenadeLauncher,
     }
 }

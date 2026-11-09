@@ -6,7 +6,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
     public class RifleSO : GunSO
     {
         [Header("Rifle Attributes")]
-        public int rifleType;
+        public RifleTypes rifleType;
 
         /// <summary>
         /// Automatically assign gun type
@@ -14,7 +14,8 @@ namespace ItemScripts.WeaponScripts.GunScripts.RifleScripts
         protected override void OnEnable()
         {
             base.OnEnable();
-            gunType = (int) Guns.GunTypes.Rifle;
+            gunType = GunTypes.Rifle;
+            isDualSlot = true;
         }
     }
 }

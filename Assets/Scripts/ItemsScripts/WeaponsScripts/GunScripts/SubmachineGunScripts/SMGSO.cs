@@ -6,7 +6,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SMGScripts
     public class SMGSO : GunSO
     {
         [Header("SMG Attributes")]
-        public int smgTypes;
+        public SMGTypes smgTypes;
 
         /// <summary>
         /// Automatically assign gun type
@@ -14,7 +14,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.SMGScripts
         protected override void OnEnable()
         {
             base.OnEnable();
-            gunType = (int) Guns.GunTypes.SMG;
+            gunType = GunTypes.SMG;
         }
     }
     

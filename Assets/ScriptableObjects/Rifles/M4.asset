@@ -13,18 +13,26 @@ MonoBehaviour:
   m_Name: M4
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.RifleScripts.RifleSO
   itemName: M4
+  itemID: 14
   itemType: 3
+  icon: {fileID: 0}
   equipable: 1
+  isStackable: 0
+  isDualSlot: 1
   movementSpeedModifier: 0
+  weaponPrefab: {fileID: 0}
   weaponType: 0
   weaponDamage: 0
   critModifer: 0
   capacity: 0
-  currentAmmo: 0
   reloadSpeed: 0
   fireRate: 0
   automatic: 1
   gunType: 2
+  CanZoom: 0
+  ZoomAmount: 0
+  standardSensitivity: 1
+  zoomSensitivity: 0
   accuracy: 0
   accuracyUnscoped: 0
   hitVFX: {fileID: 3935437322874517827, guid: 8557d9197127b3c41af3c90027ffe27d, type: 3}

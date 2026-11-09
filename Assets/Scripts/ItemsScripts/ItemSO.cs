@@ -7,7 +7,7 @@ public class ItemSO : ScriptableObject
     [Header("Item Values")]
     public string itemName;
     public int itemID;
-    public int itemType;
+    public ItemTypes itemType;
     public Sprite icon;
     public bool equipable = false;
     public bool isStackable;
@@ -15,13 +15,13 @@ public class ItemSO : ScriptableObject
     public float movementSpeedModifier;
 
     public class EmptyItemSO : ItemSO
+    {
+        public EmptyItemSO()
         {
-            public EmptyItemSO()
-            {
-                itemName = "Empty";
-                itemType = (int) Items.ItemTypes.Empty;
-                equipable = true;
-                movementSpeedModifier = 1.5f;
-            }
+            itemName = "Empty";
+            itemType = ItemTypes.Empty;
+            equipable = true;
+            movementSpeedModifier = 1.5f;
         }
+    }
 }

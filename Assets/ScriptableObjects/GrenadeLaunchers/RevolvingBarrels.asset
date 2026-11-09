@@ -13,19 +13,27 @@ MonoBehaviour:
   m_Name: RevolvingBarrels
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts.GrenadeLauncherSO
   itemName: Revolving Barrels
+  itemID: 25
   itemType: 3
+  icon: {fileID: 0}
   equipable: 1
+  isStackable: 0
+  isDualSlot: 1
   movementSpeedModifier: 0
+  weaponPrefab: {fileID: 0}
   weaponType: 0
-  weaponDamage: 0
-  critModifer: 0
+  weaponDamage: 73
+  critModifer: 1
   capacity: 6
-  currentAmmo: 6
-  reloadSpeed: 0
-  fireRate: 0
+  reloadSpeed: 5
+  fireRate: 0.75
   automatic: 0
   gunType: 6
+  CanZoom: 0
+  ZoomAmount: 0
+  standardSensitivity: 1
+  zoomSensitivity: 0
   accuracy: 0
   accuracyUnscoped: 0
   hitVFX: {fileID: 3935437322874517827, guid: 8557d9197127b3c41af3c90027ffe27d, type: 3}
-  grenadeLauncherType: 1
+  grenadeLauncherTypes: 1

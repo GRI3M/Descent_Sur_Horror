@@ -8,11 +8,10 @@ namespace ItemScripts.WeaponScripts.GunScripts
     {  
         [Header("Gun Attributes")]
         public int capacity;
-        public int currentAmmo;
         public float reloadSpeed;
         public float fireRate;
         public bool automatic = false;
-        public int gunType;
+        public GunTypes gunType;
         public bool CanZoom;
         public float ZoomAmount;
         public float standardSensitivity = 1;
@@ -29,7 +28,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         protected override void OnEnable()
         {
             base.OnEnable();
-            weaponType = (int)Weapons.WeaponTypes.Gun;
+            weaponType = WeaponTypes.Gun;
         }
     }
 }

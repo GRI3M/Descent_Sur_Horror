@@ -9,7 +9,7 @@ namespace ItemScripts.WeaponScripts
     {
         [Header("Weapon Attributes")]
         public GameObject weaponPrefab;
-        public int weaponType;
+        public WeaponTypes weaponType;
         public float weaponDamage;
         public float critModifer;
 
@@ -18,7 +18,7 @@ namespace ItemScripts.WeaponScripts
         /// </summary>
         protected virtual void OnEnable()
         {
-            itemType = (int) Items.ItemTypes.Weapon;
+            itemType = ItemTypes.Weapon;
             equipable = true;
         }
     }

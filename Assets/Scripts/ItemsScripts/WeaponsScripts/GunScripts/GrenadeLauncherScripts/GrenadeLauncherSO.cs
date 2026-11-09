@@ -6,7 +6,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
     public class GrenadeLauncherSO : GunSO
     {
         [Header("Grenade Launcher Attributes")]
-        public int grenadeLauncherType;
+        public GrenadeLauncherTypes grenadeLauncherTypes;
         
         /// <summary>
         /// Automatically assign gun type
@@ -14,7 +14,8 @@ namespace ItemScripts.WeaponScripts.GunScripts.GrenadeLauncherScripts
         protected override void OnEnable()
         {
             base.OnEnable();
-            gunType = (int) Guns.GunTypes.GrenadeLauncher;
+            gunType = GunTypes.GrenadeLauncher;
+            isDualSlot = true;
         }
     }
     

@@ -6,7 +6,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
     public class PistolSO : GunSO
     {
         [Header("Pistol Attributes")]
-        public int pistolType;
+        public PistolTypes pistolType;
 
         //This might be removed and replaced with basic script.
         public PistolUpgradeSO pistolUpgradeSO;
@@ -17,7 +17,7 @@ namespace ItemScripts.WeaponScripts.GunScripts.PistolScripts
         protected override void OnEnable() 
         {
             base.OnEnable();
-            gunType = (int) Guns.GunTypes.Pistol;
+            gunType = GunTypes.Pistol;
         }
     }
 }

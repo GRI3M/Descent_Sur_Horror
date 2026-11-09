@@ -4,11 +4,11 @@ namespace ItemScripts.WeaponScripts.GunScripts.HandcannonScript
 {
     public class Handcannon : Guns
     {
-        public enum HandcannonTypes
-        {
-            MagnumRevolver,
-            Deagle,
-            OldWestern,
-        }
+    }
+    public enum HandcannonTypes
+    {
+        MagnumRevolver,
+        Deagle,
+        OldWestern,
     }
 }

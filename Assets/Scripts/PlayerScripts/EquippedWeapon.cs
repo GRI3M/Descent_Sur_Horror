@@ -102,7 +102,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         {
             if(equippedGun) Destroy(equippedGun.gameObject);
             
-            if(weaponSO.weaponType == (int) Weapons.WeaponTypes.Gun) 
+            if(weaponSO.weaponType == WeaponTypes.Gun) 
             {
                 Guns newGun = Instantiate(weaponSO.weaponPrefab, transform).GetComponent<Guns>();
                 equippedGun = newGun;

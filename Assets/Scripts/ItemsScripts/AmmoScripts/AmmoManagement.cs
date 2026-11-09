@@ -74,11 +74,11 @@ namespace ItemScripts.AmmoManagementScript
         /// </summary>
         /// <param name="ammo">The ammo brick being updated/deleted</param>
         /// <param name="listPos">The position in the ammo list</param>
-        public void HandleReload(Ammo ammo, int listPos)
-        {
-            if (ammo.currentAmmo == 0) DeleteAmmo(ammo.ammoType, listPos, ammo.inventoryTracker);
-            else UpdateAmmo(ammo.ammoType, ammo.currentAmmo, listPos, ammo.inventoryTracker);
-        }
+        // public void HandleReload(Ammo ammo, int listPos)
+        // {
+        //     if (ammo.currentAmmo == 0) DeleteAmmo(ammo.ammoType, listPos, ammo.inventoryTracker);
+        //     else UpdateAmmo(ammo.ammoType, ammo.currentAmmo, listPos, ammo.inventoryTracker);
+        // }
 
         /// <summary>
         /// Depletes ammo from the ammo brick before deleting it
@@ -86,33 +86,33 @@ namespace ItemScripts.AmmoManagementScript
         /// <param name="ammo">The ammo brick</param>
         /// <param name="listPos">Where the ammo brick is</param>
         /// <param name="reloadAmount">How much will be extracted from the ammo brick before deletion</param>
-        public void HandleDepleteAmmo(Ammo ammo, int listPos, ref int reloadAmount)
-        {
-            reloadAmount += ammo.currentAmmo;
-            DeleteAmmo(ammo.ammoType, listPos, ammo.inventoryTracker);
-        }
+        // public void HandleDepleteAmmo(Ammo ammo, int listPos, ref int reloadAmount)
+        // {
+        //     reloadAmount += ammo.currentAmmo;
+        //     DeleteAmmo(ammo.ammoType, listPos, ammo.inventoryTracker);
+        // }
 
-        /// <summary>
-        /// Handles adding to Ammo
-        /// </summary>
-        /// <param name="tempAmmo">The ammo brick attempting to be added to</param>
-        /// <param name="ammoAmount">The amount of ammo that will be added</param>
-        /// <param name="listPos">The position in the list the ammo brick is located</param>
-        /// <returns>Returns i</returns>
-        private bool HandleAddToAmmo(Ammo tempAmmo, ref int ammoAmount, int listPos)
-        {            
-            if((ammoAmount + tempAmmo.currentAmmo) > tempAmmo.maxAmmo)
-            {
-                ammoAmount = tempAmmo.currentAmmo + ammoAmount - tempAmmo.maxAmmo;
-                UpdateAmmo(tempAmmo.ammoType, tempAmmo.maxAmmo, listPos, tempAmmo.inventoryTracker);
-                return false;
-            }
-            else
-            {
-                UpdateAmmo(tempAmmo.ammoType, tempAmmo.currentAmmo + ammoAmount, listPos, tempAmmo.inventoryTracker);
-                return true;  
-            }
-        }
+        // /// <summary>
+        // /// Handles adding to Ammo
+        // /// </summary>
+        // /// <param name="tempAmmo">The ammo brick attempting to be added to</param>
+        // /// <param name="ammoAmount">The amount of ammo that will be added</param>
+        // /// <param name="listPos">The position in the list the ammo brick is located</param>
+        // /// <returns>Returns i</returns>
+        // private bool HandleAddToAmmo(Ammo tempAmmo, ref int ammoAmount, int listPos)
+        // {            
+        //     if((ammoAmount + tempAmmo.currentAmmo) > tempAmmo.maxAmmo)
+        //     {
+        //         ammoAmount = tempAmmo.currentAmmo + ammoAmount - tempAmmo.maxAmmo;
+        //         UpdateAmmo(tempAmmo.ammoType, tempAmmo.maxAmmo, listPos, tempAmmo.inventoryTracker);
+        //         return false;
+        //     }
+        //     else
+        //     {
+        //         UpdateAmmo(tempAmmo.ammoType, tempAmmo.currentAmmo + ammoAmount, listPos, tempAmmo.inventoryTracker);
+        //         return true;  
+        //     }
+        // }
 
         /// <summary>
         /// Gets the ammo list of the ammo type inserted
@@ -176,122 +176,122 @@ namespace ItemScripts.AmmoManagementScript
         /// <param name="ammoAmount">The amount of ammo</param>
         /// <param name="ammoSlot">The ammo slot the ammo occupies</param>
         /// <param name="ait">The inventory slot the ammo occupies</param>
-        private void UpdateAmmo(int ammoType, int ammoAmount, int ammoSlot, AmmoInventoryTracker ait)
-        {
-            switch (ammoType)
-            {
-                case (int) AmmoTypes.PistolAmmo:
-                    pistolAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = pistolAmmoTracker[ammoSlot];
-                    return;
-                case (int) AmmoTypes.ShotgunAmmo:
-                    shotgunAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = shotgunAmmoTracker[ammoSlot];
-                    return;
-                case (int) AmmoTypes.SniperAmmo:
-                    sniperAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = sniperAmmoTracker[ammoSlot];
-                    return;
-                case (int) AmmoTypes.SMGAmmo:
-                    smgAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = smgAmmoTracker[ammoAmount];
-                    return;
-                case (int) AmmoTypes.RifleAmmo:
-                    rifleAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = rifleAmmoTracker[ammoSlot];
-                    return;
-                case (int) AmmoTypes.HandcannonAmmo:
-                    handcannonAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = handcannonAmmoTracker[ammoSlot];
-                    return;
-                case(int) AmmoTypes.GrenadeLauncherAmmo:
-                    grenadeLauncherAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = handcannonAmmoTracker[ammoSlot];
-                    return;
-            }
-        }
+        // private void UpdateAmmo(int ammoType, int ammoAmount, int ammoSlot, AmmoInventoryTracker ait)
+        // {
+        //     switch (ammoType)
+        //     {
+        //         case (int) AmmoTypes.PistolAmmo:
+        //             pistolAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = pistolAmmoTracker[ammoSlot];
+        //             return;
+        //         case (int) AmmoTypes.ShotgunAmmo:
+        //             shotgunAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = shotgunAmmoTracker[ammoSlot];
+        //             return;
+        //         case (int) AmmoTypes.SniperAmmo:
+        //             sniperAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = sniperAmmoTracker[ammoSlot];
+        //             return;
+        //         case (int) AmmoTypes.SMGAmmo:
+        //             smgAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = smgAmmoTracker[ammoAmount];
+        //             return;
+        //         case (int) AmmoTypes.RifleAmmo:
+        //             rifleAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = rifleAmmoTracker[ammoSlot];
+        //             return;
+        //         case (int) AmmoTypes.HandcannonAmmo:
+        //             handcannonAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = handcannonAmmoTracker[ammoSlot];
+        //             return;
+        //         case(int) AmmoTypes.GrenadeLauncherAmmo:
+        //             grenadeLauncherAmmoTracker[ammoSlot].currentAmmo = ammoAmount;
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = handcannonAmmoTracker[ammoSlot];
+        //             return;
+        //     }
+        // }
 
-        /// <summary>
-        /// Creates a new ammo brick and adds it to the inventory and ammo tracker
-        /// </summary>
-        /// <param name="ammoType">The ammo type needed</param>
-        /// <param name="ait">The inventory slot the ammo will take up</param>
-        /// <param name="ammoAmount">The amount of ammo being created</param>
-        private void CreateAmmo(int ammoType, AmmoInventoryTracker ait, int ammoAmount)
-        {
-            switch (ammoType)
-            {
-                case (int) AmmoTypes.PistolAmmo:
-                    PistolAmmo tempPAmmo = new PistolAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempPAmmo;
-                    pistolAmmoTracker.Add(tempPAmmo);
-                    return;
-                case (int) AmmoTypes.ShotgunAmmo:
-                    ShotgunAmmo tempShAmmo = new ShotgunAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempShAmmo;
-                    shotgunAmmoTracker.Add(tempShAmmo);
-                    return;
-                case (int) AmmoTypes.SniperAmmo:
-                    SniperAmmo tempSnAmmo = new SniperAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempSnAmmo;
-                    sniperAmmoTracker.Add(tempSnAmmo);
-                    return;
-                case (int) AmmoTypes.SMGAmmo:
-                    SMGAmmo tempSMGAmmo = new SMGAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempSMGAmmo;
-                    smgAmmoTracker.Add(tempSMGAmmo);
-                    return;
-                case (int) AmmoTypes.RifleAmmo:
-                    RifleAmmo tempRAmmo = new RifleAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempRAmmo;
-                    rifleAmmoTracker.Add(tempRAmmo);
-                    return;
-                case (int) AmmoTypes.HandcannonAmmo:
-                    HandcannonAmmo tempHAmmo = new HandcannonAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempHAmmo;
-                    handcannonAmmoTracker.Add(tempHAmmo);
-                    return;
-                case(int) AmmoTypes.GrenadeLauncherAmmo:
-                    GrenadeLauncherAmmo tempGLAmmo = new GrenadeLauncherAmmo(ait, ammoAmount);
-                    playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempGLAmmo;
-                    grenadeLauncherAmmoTracker.Add(tempGLAmmo);
-                    return;
-            }
-        }
+        // /// <summary>
+        // /// Creates a new ammo brick and adds it to the inventory and ammo tracker
+        // /// </summary>
+        // /// <param name="ammoType">The ammo type needed</param>
+        // /// <param name="ait">The inventory slot the ammo will take up</param>
+        // /// <param name="ammoAmount">The amount of ammo being created</param>
+        // private void CreateAmmo(int ammoType, AmmoInventoryTracker ait, int ammoAmount)
+        // {
+        //     switch (ammoType)
+        //     {
+        //         case (int) AmmoTypes.PistolAmmo:
+        //             PistolAmmo tempPAmmo = new PistolAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryRow] = tempPAmmo;
+        //             pistolAmmoTracker.Add(tempPAmmo);
+        //             return;
+        //         case (int) AmmoTypes.ShotgunAmmo:
+        //             ShotgunAmmo tempShAmmo = new ShotgunAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempShAmmo;
+        //             shotgunAmmoTracker.Add(tempShAmmo);
+        //             return;
+        //         case (int) AmmoTypes.SniperAmmo:
+        //             SniperAmmo tempSnAmmo = new SniperAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempSnAmmo;
+        //             sniperAmmoTracker.Add(tempSnAmmo);
+        //             return;
+        //         case (int) AmmoTypes.SMGAmmo:
+        //             SMGAmmo tempSMGAmmo = new SMGAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempSMGAmmo;
+        //             smgAmmoTracker.Add(tempSMGAmmo);
+        //             return;
+        //         case (int) AmmoTypes.RifleAmmo:
+        //             RifleAmmo tempRAmmo = new RifleAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempRAmmo;
+        //             rifleAmmoTracker.Add(tempRAmmo);
+        //             return;
+        //         case (int) AmmoTypes.HandcannonAmmo:
+        //             HandcannonAmmo tempHAmmo = new HandcannonAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempHAmmo;
+        //             handcannonAmmoTracker.Add(tempHAmmo);
+        //             return;
+        //         case(int) AmmoTypes.GrenadeLauncherAmmo:
+        //             GrenadeLauncherAmmo tempGLAmmo = new GrenadeLauncherAmmo(ait, ammoAmount);
+        //             playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = tempGLAmmo;
+        //             grenadeLauncherAmmoTracker.Add(tempGLAmmo);
+        //             return;
+        //     }
+        // }
 
-        /// <summary>
-        /// Delete an ammo brick from the ammo list and it's inventory slot
-        /// </summary>
-        /// <param name="ammoType">The ammo type being removed</param>
-        /// <param name="listPos">The position in the ammo list</param>
-        /// <param name="ait">The position in the inventory</param>
-        private void DeleteAmmo(int ammoType, int listPos, AmmoInventoryTracker ait)
-        {
-            //playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = new ItemSO.EmptyItemSO();
-            switch (ammoType)
-            {
-                case (int) AmmoTypes.PistolAmmo:
-                    pistolAmmoTracker.Remove(pistolAmmoTracker[listPos]);
-                    return;
-                case (int) AmmoTypes.ShotgunAmmo:
-                    shotgunAmmoTracker.Remove(shotgunAmmoTracker[listPos]);
-                    return;
-                case (int) AmmoTypes.SniperAmmo:
-                    sniperAmmoTracker.Remove(sniperAmmoTracker[listPos]);
-                    return;
-                case (int) AmmoTypes.SMGAmmo:
-                    smgAmmoTracker.Remove(smgAmmoTracker[listPos]);
-                    return;
-                case (int) AmmoTypes.RifleAmmo:
-                    rifleAmmoTracker.Remove(rifleAmmoTracker[listPos]);
-                    return;
-                case (int) AmmoTypes.HandcannonAmmo:
-                    handcannonAmmoTracker.Remove(handcannonAmmoTracker[listPos]);
-                    return;
-                case(int) AmmoTypes.GrenadeLauncherAmmo:
-                    grenadeLauncherAmmoTracker.Remove(grenadeLauncherAmmoTracker[listPos]);
-                    return;
-            }
-        }
+        // /// <summary>
+        // /// Delete an ammo brick from the ammo list and it's inventory slot
+        // /// </summary>
+        // /// <param name="ammoType">The ammo type being removed</param>
+        // /// <param name="listPos">The position in the ammo list</param>
+        // /// <param name="ait">The position in the inventory</param>
+        // private void DeleteAmmo(int ammoType, int listPos, AmmoInventoryTracker ait)
+        // {
+        //     //playerInventory.inventory[ait.inventoryRow][ait.inventoryColumn] = new ItemSO.EmptyItemSO();
+        //     switch (ammoType)
+        //     {
+        //         case (int) AmmoTypes.PistolAmmo:
+        //             pistolAmmoTracker.Remove(pistolAmmoTracker[listPos]);
+        //             return;
+        //         case (int) AmmoTypes.ShotgunAmmo:
+        //             shotgunAmmoTracker.Remove(shotgunAmmoTracker[listPos]);
+        //             return;
+        //         case (int) AmmoTypes.SniperAmmo:
+        //             sniperAmmoTracker.Remove(sniperAmmoTracker[listPos]);
+        //             return;
+        //         case (int) AmmoTypes.SMGAmmo:
+        //             smgAmmoTracker.Remove(smgAmmoTracker[listPos]);
+        //             return;
+        //         case (int) AmmoTypes.RifleAmmo:
+        //             rifleAmmoTracker.Remove(rifleAmmoTracker[listPos]);
+        //             return;
+        //         case (int) AmmoTypes.HandcannonAmmo:
+        //             handcannonAmmoTracker.Remove(handcannonAmmoTracker[listPos]);
+        //             return;
+        //         case(int) AmmoTypes.GrenadeLauncherAmmo:
+        //             grenadeLauncherAmmoTracker.Remove(grenadeLauncherAmmoTracker[listPos]);
+        //             return;
+        //     }
+        // }
     }
 }
