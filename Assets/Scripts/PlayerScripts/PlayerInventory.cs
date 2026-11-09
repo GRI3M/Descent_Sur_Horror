@@ -40,10 +40,9 @@ namespace Player
         public int magnumAmmo;
         private bool grenadeLauncherObtained;
         public int grenadeLauncherAmmo;
+        public EquippedWeapon equippedWeapon;
 
-        public Weapons equippedWeapon;
-
-        public Guns equippedGun;
+        public Items[] quickEquipSlots = new Items[4];
 
 
         public enum BagTypes  
@@ -72,12 +71,10 @@ namespace Player
 
         private void InitializeInventory()
         {
-            inventory[0] = new Items[4];
-            inventory[1] = new Items[4];
-            inventory[2] = new Items[4];
-            inventory[3] = new Items[4];
-            inventory[4] = new Items[4];
-            inventory[5] = new Items[4];
+            for(int i = 0; i < 6; i++)
+            {
+                inventory[i] = new Items[4];
+            }
             inventory[6] = new Items[3];
         }
 
@@ -92,54 +89,54 @@ namespace Player
         /// This function is called when the player obtains a weapon satchel. It will unlock the 3 slots in the inventory that are reserved for weapons, allowing the player to store weapons in those slots.
         /// The weapon satchel can only hold weapons that are at least 2 units in size.
         /// </summary>
-        // private void WeaponSatchelObtained()
-        // {
-        //     for(int i = 0; i < 2; i++)
-        //     {
-        //         if(inventory[6][i].itemType == (int)Items.ItemTypes.Blocked)
-        //         {
-        //             inventory[6][i].itemType = (int)Items.ItemTypes.Empty;
-        //         }
-        //     }
-        // }
+        public void WeaponSatchelObtained()
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                if(inventory[6][i].itemSO.itemType == (int)Items.ItemTypes.Blocked)
+                {
+                    inventory[6][i].itemSO.itemType = (int)Items.ItemTypes.Empty;
+                }
+            }
+        }
 
         /// <summary>
         /// Resize the palyer's inventory on start up to default size, or when player obtains a new bag.
         /// </summary>
         /// <param name="bag"> The type of bag obtained by the player</param>
-        // private void BagResize(int bag)
-        // {
-        //     int inventoryRow = 0;
-        //     int inventoryRowMax = 0;
-        //     switch (bag)
-        //     {
-        //         case (int) BagTypes.None:
-        //         inventoryRowMax = 1;
-        //         break;
-        //         case (int) BagTypes.Bag:
-        //         inventoryRow = 2;
-        //         inventoryRowMax = 3;
-        //         break;   
-        //         case (int) BagTypes.Upgrade1:
-        //         inventoryRow = 4;
-        //         inventoryRowMax = 4;
-        //         break;
-        //         case (int) BagTypes.Upgrade2:
-        //         inventoryRow = 5;
-        //         inventoryRowMax = 5;
-        //         break;
-        //     }
+        public void BagResize(int bag)
+        {
+            int inventoryRow = 0;
+            int inventoryRowMax = 0;
+            switch (bag)
+            {
+                case (int) BagTypes.None:
+                inventoryRowMax = 1;
+                break;
+                case (int) BagTypes.Bag:
+                inventoryRow = 2;
+                inventoryRowMax = 3;
+                break;   
+                case (int) BagTypes.Upgrade1:
+                inventoryRow = 4;
+                inventoryRowMax = 4;
+                break;
+                case (int) BagTypes.Upgrade2:
+                inventoryRow = 5;
+                inventoryRowMax = 5;
+                break;
+            }
             
                 
-            // for(int i = inventoryRow; i < inventoryRowMax; i++)
-            // {
-            //     for(int x = 0; x < 3; x++)
-            //     {
-            //         if((int)inventory[i][x].itemType == (int) Items.ItemTypes.Blocked)
-            //             inventory[i][x].itemType = (int) Items.ItemTypes.Empty;
-            //     }
-            // }
-        //}
+            for(int i = inventoryRow; i < inventoryRowMax; i++)
+            {
+                for(int x = 0; x < 3; x++)
+                {
+                    if(inventory[i][x].itemSO.itemType == (int) Items.ItemTypes.Blocked)
+                        inventory[i][x].itemSO.itemType = (int) Items.ItemTypes.Empty;
+                }
+            }
+        }
 
         /// <summary>
         /// Checks the current inventory slot player is trying to move an item into and checks if the item can be placed in that slot. Returns 1 if the item can be placed, 0 if the slot is blocked,
@@ -149,20 +146,22 @@ namespace Player
         /// <param name="Slot">Checks which slot the player is trying to move an item into</param>
         /// <param name="Item">The item the player is trying to move</param>
         /// <returns></returns>
-        /*private int CheckAvailability(int slot, int item) 
+        public int CheckAvailability(int row, int column, int item) 
         {
-             int[] satchelSlots = {24,25,26};
+            int satchelSlots = 6;
             //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(inventory[slot].itemType == (int) Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
+            if(inventory[row][column].itemSO.itemType == (int) Items.ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
 
-            //else if(Inventory[Slot].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
+            //else if(Inventory[row][column].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
 
-            else if(satchelSlots.Contains((int)inventory[slot].itemType) && inventory[slot].itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
+            else if(
+                //satchelSlots.Contains((int)inventory[row][column].itemSO.itemType) && 
+                inventory[row][column].itemSO.itemType == (int)Items.ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
 
 
             else return (int)InventoryCheckDisplay.SlotCheckError;
-        }*/
+        }
 
         // public void SwitchWeapon(Weapons weapon)
         // {

@@ -18,5 +18,9 @@ namespace ItemScripts
             Healing,
             Utility,
         }
+
+        public ItemSO itemSO;
+
+        //public 
     }
 }

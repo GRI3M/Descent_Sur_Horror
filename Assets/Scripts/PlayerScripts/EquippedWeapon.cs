@@ -20,8 +20,10 @@ namespace ItemScripts.WeaponScripts.GunScripts
         FirstPersonController fps;
 
         [Header("Currently Equipped Weapon")]
+
+        Weapons equippedWeapon;
         Guns equippedGun;
-        GunSO currentGunSO;
+        GunSO equippedGunSO;
         public MeshRenderer weaponModel;
 
         [Header("Weapon Values")]
@@ -60,7 +62,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         {
             currentAmmo += amount;
 
-            if(currentAmmo > currentGunSO.capacity) currentAmmo = currentGunSO.capacity;
+            if(currentAmmo > equippedGunSO.capacity) currentAmmo = equippedGunSO.capacity;
 
             equippedGun.ammoCount = currentAmmo;
 
@@ -76,22 +78,26 @@ namespace ItemScripts.WeaponScripts.GunScripts
 
             if(!starterAssetsInputs.shoot) return;
 
-            if(timeSinceLastShot >= currentGunSO.fireRate && currentAmmo > 0)
+            if(timeSinceLastShot >= equippedGunSO.fireRate && currentAmmo > 0)
             {
-                equippedGun.Shoot(currentGunSO);
+                equippedGun.Shoot(equippedGunSO);
                 gunAnimator.Play(SHOOT_STR, 0, 0f);
                 timeSinceLastShot = 0f;
                 UpdateAmmo(-1);
             }
             
-            if(!currentGunSO.automatic) starterAssetsInputs.ShootInput(false);
+            if(!equippedGunSO.automatic) starterAssetsInputs.ShootInput(false);
         }
 
 
         /// <summary>
         /// Handles switching from one weapon to the next.
         /// </summary>
-        /// <param name="weaponSO">Weapon being switched to.</param>
+        /// <param name="weaponSO">Weapon being switched to</param>
+        /// 
+        /// Switch this to have the weaponSO/GunSO tied directly to the weapon 
+        /// instead of a pickup because I want this weapon to switch based upon 
+        /// pressing 1, 2, 3, or 4 or by pressing the last weapon button
         public void SwitchWeapon(WeaponSO weaponSO)
         {
             if(equippedGun) Destroy(equippedGun.gameObject);
@@ -100,10 +106,10 @@ namespace ItemScripts.WeaponScripts.GunScripts
             {
                 Guns newGun = Instantiate(weaponSO.weaponPrefab, transform).GetComponent<Guns>();
                 equippedGun = newGun;
-                currentGunSO = (GunSO) weaponSO;
-                fps.ChangeRotationSpeed(currentGunSO.standardSensitivity); 
+                equippedGunSO = (GunSO) weaponSO;
+                fps.ChangeRotationSpeed(equippedGunSO.standardSensitivity); 
                 starterAssetsInputs.zoom = false;
-                UpdateAmmo(currentGunSO.capacity);
+                UpdateAmmo(equippedGunSO.capacity);
                 this.weaponModel = newGun.weaponModel;
             }//When other types of weapons are created, weaponSO will be removed and replaced with Utility and Melee weapons
         }
@@ -115,20 +121,20 @@ namespace ItemScripts.WeaponScripts.GunScripts
         /// </summary>
         void HandleZoom()
         {
-            if(!currentGunSO.CanZoom) return;
+            if(!equippedGunSO.CanZoom) return;
 
             if (starterAssetsInputs.zoom)
             {
-                playerCamera.m_Lens.FieldOfView = currentGunSO.ZoomAmount;
+                playerCamera.m_Lens.FieldOfView = equippedGunSO.ZoomAmount;
                 scopeVignette.SetActive(true);
-                fps.ChangeRotationSpeed(currentGunSO.zoomSensitivity);
+                fps.ChangeRotationSpeed(equippedGunSO.zoomSensitivity);
                 weaponModel.enabled = false;
             }
             else
             {
                 playerCamera.m_Lens.FieldOfView = defaultZoom;
                 scopeVignette.SetActive(false);
-                fps.ChangeRotationSpeed(currentGunSO.standardSensitivity);
+                fps.ChangeRotationSpeed(equippedGunSO.standardSensitivity);
                 weaponModel.enabled = true;
             }
         }
