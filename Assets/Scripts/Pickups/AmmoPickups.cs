@@ -9,7 +9,7 @@ public class AmmoPickups : Pickups
     /// to store that ammo
     /// </summary>
     [SerializeField] int ammoAmount = 100;
-    protected override void OnPickUp(EquippedWeapon equippedWeapon)
+    protected override void OnPickUp(EquippedItem equippedWeapon)
     {
         equippedWeapon.UpdateAmmo(ammoAmount);
     }

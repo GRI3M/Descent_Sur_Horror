@@ -12,10 +12,10 @@ public abstract class Pickups : MonoBehaviour
     {
         if (other.CompareTag(PLAYER_STRING))
         {
-            EquippedWeapon equippedWeapon = other.GetComponentInChildren<EquippedWeapon>();
+            EquippedItem equippedWeapon = other.GetComponentInChildren<EquippedItem>();
             OnPickUp(equippedWeapon);
             Destroy(this.gameObject);
         }
     }
-    protected abstract void OnPickUp(EquippedWeapon equippedWeapon);
+    protected abstract void OnPickUp(EquippedItem equippedWeapon);
 }

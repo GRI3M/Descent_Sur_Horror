@@ -15,6 +15,7 @@ namespace ItemScripts.WeaponScripts.GunScripts
         [SerializeField] public ParticleSystem muzzleFlash;
         [SerializeField] public LayerMask layerMask;
         [SerializeField] public CinemachineImpulseSource impulseSource;
+        [SerializeField] public GunSO gunSO;
 
         /// <summary>
         /// Handles shooting gun

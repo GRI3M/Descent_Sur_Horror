@@ -20,9 +20,14 @@ namespace Player
         // that can go into the weapon satchel. The weapon satchel is a special inventory that can only hold weapons, and is not affected by the bag size.
         // Inventroy initializes as blocked and will refill to be empty on startup.
         // this might be public depending on the equip
-        public Items[][] inventory = new Items [7][];
-        
+
+        [Header("Pluggins")]
+        public InventorySlot[][] inventory = new InventorySlot [7][];
         public AmmoManagement ammoManagement;
+        public Items[] quickEquipSlots = new Items[4];
+        public EquippedItem equippedItem;
+
+        [Header("Inventory Values")]
 
         public int bagSize = (int) BagTypes.None;
 
@@ -40,9 +45,14 @@ namespace Player
         public int magnumAmmo;
         private bool grenadeLauncherObtained;
         public int grenadeLauncherAmmo;
-        public EquippedWeapon equippedWeapon;
 
-        public Items[] quickEquipSlots = new Items[4];
+
+        [Header("Constant Values")]
+        private const int NO_BAG_CHECK = 8;
+        private const int BAG_CHECK = 16;
+        private const int BAG_UPGRADE_1_CHECK = 20;
+        private const int BAG_UPGRADE_2_CHECK = 24;
+
 
 
         public enum BagTypes  
@@ -73,9 +83,9 @@ namespace Player
         {
             for(int i = 0; i < 6; i++)
             {
-                inventory[i] = new Items[4];
+                inventory[i] = new InventorySlot[4];
             }
-            inventory[6] = new Items[3];
+            inventory[6] = new InventorySlot[3];
         }
 
 
@@ -93,9 +103,9 @@ namespace Player
         {
             for(int i = 0; i < 2; i++)
             {
-                if(inventory[6][i].itemSO.itemType == ItemTypes.Blocked)
+                if(inventory[6][i].slotItem.itemSO.itemType == ItemTypes.Blocked)
                 {
-                    inventory[6][i].itemSO.itemType = ItemTypes.Empty;
+                    inventory[6][i].slotItem.itemSO.itemType = ItemTypes.Empty;
                 }
             }
         }
@@ -132,8 +142,8 @@ namespace Player
             {
                 for(int x = 0; x < 3; x++)
                 {
-                    if(inventory[i][x].itemSO.itemType == ItemTypes.Blocked)
-                        inventory[i][x].itemSO.itemType = ItemTypes.Empty;
+                    if(inventory[i][x].slotItem.itemSO.itemType == ItemTypes.Blocked)
+                        inventory[i][x].slotItem.itemSO.itemType = ItemTypes.Empty;
                 }
             }
         }
@@ -148,27 +158,28 @@ namespace Player
         /// <returns></returns>
         public int CheckAvailability(int row, int column, int item) 
         {
+
             int satchelSlots = 6;
             //int[] bigWeapon = {(int)survivorItems.ShotgunPart1, (int)survivorItems.ShotgunPart2};
 
-            if(inventory[row][column].itemSO.itemType == ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
+            if(inventory[row][column].slotItem.itemSO.itemType == ItemTypes.Blocked) return (int)InventoryCheckDisplay.Empty;
 
             //else if(Inventory[row][column].itemType == (int)Items.ItemTypes.Empty && !satchelSlots.Contains((int)Inventory[Slot].itemType) && !bigWeapon.Contains(Item)) return (int)InventoryCheckDisplay.Empty;
 
             else if(
                 //satchelSlots.Contains((int)inventory[row][column].itemSO.itemType) && 
-                inventory[row][column].itemSO.itemType == ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
+                inventory[row][column].slotItem.itemSO.itemType == ItemTypes.Empty ) return (int)InventoryCheckDisplay.Empty;
 
 
             else return (int)InventoryCheckDisplay.SlotCheckError;
         }
 
-        // public void SwitchWeapon(Weapons weapon)
-        // {
-        //     equippedWeapon = weapon;
-        //     if(weapon.weaponType == (int) Weapons.WeaponTypes.Gun) equippedGun = (Guns) weapon;
-        //     else equippedGun = null;
-        // }
+        public void SwitchEquippedItem()
+        {
+            //equippedWeapon.
+            //if(weapon. == (int) Weapons.WeaponTypes.Gun) equippedGun = (Guns) weapon;
+            //else equippedGun = null;
+        }
 
         /// <summary>
         /// Checks the equipped gun and attempts to reload it to full capacity 

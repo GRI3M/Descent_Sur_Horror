@@ -6,7 +6,7 @@ using TMPro;
 
 namespace ItemScripts.WeaponScripts.GunScripts
 {
-    public class EquippedWeapon : MonoBehaviour
+    public class EquippedItem : MonoBehaviour
     {
 
         [Header("Plugins")]
@@ -21,9 +21,10 @@ namespace ItemScripts.WeaponScripts.GunScripts
 
         [Header("Currently Equipped Weapon")]
 
-        Weapons equippedWeapon;
-        Guns equippedGun;
-        GunSO equippedGunSO;
+        public Weapons equippedWeapon;
+        public WeaponSO equippedWeaponSO;
+        public Guns equippedGun;
+        public GunSO equippedGunSO;
         public MeshRenderer weaponModel;
 
         [Header("Weapon Values")]
@@ -90,6 +91,29 @@ namespace ItemScripts.WeaponScripts.GunScripts
         }
 
 
+        public void EquipItem(ItemSO itemSO)
+        {
+            if(itemSO == null || !itemSO.equipable) return;
+
+            switch(itemSO.itemType)
+            {
+                case ItemTypes.Weapon:
+                    ///Update this so that instead of being equipWeapon, it drips down to it's exact weapon type.
+                    if(itemSO is WeaponSO weapon) SwitchWeapon(weapon);
+                    else Debug.LogWarning("Item has weapon tag but is not a weapon");
+                    break;
+                case ItemTypes.Utility:
+                    // if(itemSO is UtilitySO utility) EquipUtility(utility);
+                    // else Debug.LogWarning("Item has Utility tag but is not a utility");
+                    break;
+                case ItemTypes.Healing:
+                    // if(itemSO is HealingSO healing) EquipHealing(healing);
+                    // else Debug.LogWarning("Item has healing tag but is not a healing item");
+                    break;
+            }
+        }
+
+
         /// <summary>
         /// Handles switching from one weapon to the next.
         /// </summary>
@@ -101,7 +125,8 @@ namespace ItemScripts.WeaponScripts.GunScripts
         public void SwitchWeapon(WeaponSO weaponSO)
         {
             if(equippedGun) Destroy(equippedGun.gameObject);
-            
+
+
             if(weaponSO.weaponType == WeaponTypes.Gun) 
             {
                 Guns newGun = Instantiate(weaponSO.weaponPrefab, transform).GetComponent<Guns>();
