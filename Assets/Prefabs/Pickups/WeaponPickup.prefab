@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31847268f25bd95448ab3e80756c042c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickups
+  weaponSO: {fileID: 0}
 --- !u!1 &3245399477470453987
 GameObject:
   m_ObjectHideFlags: 0

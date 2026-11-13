@@ -11,6 +11,6 @@ public class WeaponPickup : Pickups
 
     protected override void OnPickUp(EquippedItem equippedWeapon)
     {
-        //equippedWeapon.SwitchWeapon(weaponSO);       
+        equippedWeapon.SwitchWeapon(weaponSO);       
     }
 }
