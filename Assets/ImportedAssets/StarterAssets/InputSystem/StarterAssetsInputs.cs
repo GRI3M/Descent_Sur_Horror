@@ -15,6 +15,10 @@ namespace StarterAssets
 		public bool shoot;
 		public bool zoom;
 		public bool interact;
+		public bool firstSlot;
+		public bool secondSlot;
+		public bool thridSlot;
+		public bool fourthSlot;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -67,6 +71,23 @@ namespace StarterAssets
 		{
 			InteractInput(value.isPressed);
 		}
+
+		public void OnFirstSlot(InputValue value)
+		{
+			FirstSlotInput(value.isPressed);
+		}
+		public void OnSecondSlot(InputValue value)
+		{
+			SecondSlotInput(value.isPressed);
+		}
+		public void OnThirdSlot(InputValue value)
+		{
+			ThirdSlotInput(value.isPressed);
+		}
+		public void OnFourthSlot(InputValue value)
+		{
+			FourthSlotInput(value.isPressed);
+		}
 #endif
 
 
@@ -104,6 +125,25 @@ namespace StarterAssets
 		{
 			interact = newInteractState;
 		}
+
+		public void FirstSlotInput(bool newFirstSlotState)
+		{
+			firstSlot = newFirstSlotState;
+		}
+
+		public void SecondSlotInput(bool newFirstSlotState)
+		{
+			secondSlot = newFirstSlotState;
+		}
+		public void ThirdSlotInput(bool newFirstSlotState)
+		{
+			thridSlot = newFirstSlotState;
+		}
+		public void FourthSlotInput(bool newFirstSlotState)
+		{
+			fourthSlot = newFirstSlotState;
+		}
+
 		
 		private void OnApplicationFocus(bool hasFocus)
 		{

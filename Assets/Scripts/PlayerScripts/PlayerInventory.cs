@@ -10,6 +10,7 @@ using System.Diagnostics;
 using ItemScripts.WeaponScripts.GunScripts;
 using System.Collections.Generic;
 using ItemScripts.AmmoScript;
+using ItemScripts.WeaponScripts.GunScripts.PistolScripts;
 
 namespace Player
 {
@@ -26,6 +27,7 @@ namespace Player
         public AmmoManagement ammoManagement;
         public Items[] quickEquipSlots = new Items[4];
         public EquippedItem equippedItem;
+
 
         [Header("Inventory Values")]
 
@@ -76,7 +78,7 @@ namespace Player
         {
             InitializeInventory();
             //BagResize((int)BagTypes.None);
-
+            //quickEquipSlots = new Pistol()
         }
 
         private void InitializeInventory()

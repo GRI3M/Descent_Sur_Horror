@@ -4895,7 +4895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5283057821047288428}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.04957807, z: -0, w: 0.9987703}
+  m_LocalRotation: {x: 0, y: -0.049581986, z: 0, w: 0.99877006}
   m_LocalPosition: {x: 0.05499983, y: 0, z: -0.061999798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4916,14 +4916,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cbff7b35474aa4390cf649a91d1212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.RifleScripts.Rifle
-  weaponModel: {fileID: 0}
+  itemSO: {fileID: 11400000, guid: 7ea5aed455b830648b05b85542e3b72b, type: 2}
+  weaponModel: {fileID: 7793575270107149396}
   ammoCount: 0
   muzzleFlash: {fileID: 6434152748367261660}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   impulseSource: {fileID: -4658725876170260615}
-  rifleType: 0
+  gunSO: {fileID: 11400000, guid: 7ea5aed455b830648b05b85542e3b72b, type: 2}
 --- !u!114 &-4658725876170260615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9876,6 +9877,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c5e5625b7bd884899700bf60088473, type: 3}
+--- !u!23 &7793575270107149396 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: e8c5e5625b7bd884899700bf60088473, type: 3}
+  m_PrefabInstance: {fileID: 8928881914776119504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8963143705768660795 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e8c5e5625b7bd884899700bf60088473, type: 3}

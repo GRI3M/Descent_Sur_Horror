@@ -5007,6 +5007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2655f099555ebaf458aaba0ec42901d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScripts.WeaponScripts.GunScripts.PistolScripts.Pistol
+  itemSO: {fileID: 11400000, guid: 598ffd4ec9bffa64daf5c95c32d1cde7, type: 2}
   weaponModel: {fileID: 1658712956322181209}
   ammoCount: 0
   muzzleFlash: {fileID: 4551844743834195927}
@@ -5014,6 +5015,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   impulseSource: {fileID: 984949612507557499}
+  gunSO: {fileID: 11400000, guid: 598ffd4ec9bffa64daf5c95c32d1cde7, type: 2}
 --- !u!114 &984949612507557499
 MonoBehaviour:
   m_ObjectHideFlags: 0
